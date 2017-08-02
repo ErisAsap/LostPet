@@ -11,9 +11,9 @@ import UIKit
 class ViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource {
     
     var postData = [
-    ["pet1","pet2","pet3","pet4","pet5","pet6","pet15","pet7","pet8","pet9","pet10"],
-    ["pet11","pet12","pet13","pet14","pet16","pet17","pet18"],
-    ["pet11","pet12","pet13","pet16","pet17",]
+    ["pet1","pet2","pet3","pet4","pet5","pet6","pet7","pet8","pet9","pet10"],
+    ["pet11","pet12","pet13","pet14","pet15"],
+    ["pet16","pet17","pet18"]
     ]
     
     let postCell = "PostCell"
