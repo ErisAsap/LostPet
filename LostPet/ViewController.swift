@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import Alamofire
 
 class ViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource {
+    
+    @IBOutlet weak var postCollectionView: UICollectionView!
     
     var selectedPet: String?
     var postData = [
@@ -16,15 +19,38 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
         ["pet11","pet12","pet13","pet14","pet15"],
         ["pet16","pet17","pet18"]
     ]
-    
     let postCell = "PostCell"
     
-    @IBOutlet weak var postCollectionView: UICollectionView!
+    var jsonResult :String = "hi" {
+        didSet{
+            print(jsonResult)
+        }
+    }
+    let lostPetDataRequst = Alamofire.request("http://data.coa.gov.tw/Service/OpenData/DataFileService.aspx?UnitId=127")
+
+/*
+//Alamofir.request("網址").responseJSON{response in 這個地方有一些屬性可以用}
+//    response.request // 網址
+//    response.response, http url response // 裡面感覺好用資訊有： 下載檔案類型(知道的話方便之後格式轉檔)，下載時間
+//    if let json = response.result.value {
+//    print("JSON: \(json)") // serialized json response 格式化完畢的字串，沒轉檔是看不懂的
+//    }
+*/
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         postCollectionView.dataSource = self
         postCollectionView.delegate = self
+        lostPetDataRequst.responseJSON { response in
+            //因為不是https已經去改了plist裡面的設定
+            print("Result: \(response.result)") // 格式化是否成功 成功或失敗 的字樣
+            if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
+                //    print("Data: \(utf8Text)") // original server data as UTF8 string
+                self.jsonResult = utf8Text
+//                print(utf8Text)
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
