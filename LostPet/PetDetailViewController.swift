@@ -21,7 +21,7 @@ class PetDetailViewController: UIViewController {
         
         let petPhotosDic = [
         "pet00":["pet00-0","pet00-1","pet00-2","pet00-3","pet00-4"],
-        "pet01":["pet01-1","pet01-2","pet01-3","pet01-4","pet01-5"]
+        "pet01":["pet01-0","pet01-1","pet01-2","pet01-3","pet01-4","pet01-5"]
         ]
         
         

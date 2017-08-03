@@ -68,8 +68,8 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
         let petInfoPage = storyboard?.instantiateViewController(withIdentifier: "PetDetailViewController") as! PetDetailViewController
         petInfoPage.selectedPet = sender as? String
         present(petInfoPage, animated: true, completion: nil)
-        self.selectedPet = petInfoPage.selectedPet ?? "unknow pet"
-        print("performsegue with selected pet \(self.selectedPet!)")
+        self.selectedPet = petInfoPage.selectedPet ?? "unknown pet"
+        print("performsegue with \(self.selectedPet!) selected")
     }
 
 }
