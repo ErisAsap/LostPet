@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -74,14 +75,66 @@
                             <constraint firstAttribute="trailing" secondItem="9LB-b6-S9b" secondAttribute="trailing" id="w3S-Xs-hOT"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="TMF-zv-vTl"/>
+                    <navigationItem key="navigationItem" id="TMF-zv-vTl">
+                        <barButtonItem key="rightBarButtonItem" title="Filter" id="0Mm-2r-Sjo"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="postCollectionView" destination="9LB-b6-S9b" id="Aez-CT-pFj"/>
+                        <segue destination="xGe-F1-hkj" kind="presentation" identifier="SelectPet" id="PYL-Sy-XL3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="962" y="793"/>
+        </scene>
+        <!--Pet Detail View Controller-->
+        <scene sceneID="kjo-6P-bV3">
+            <objects>
+                <viewController storyboardIdentifier="PetDetailViewController" id="xGe-F1-hkj" customClass="PetDetailViewController" customModule="LostPet" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="o3S-gd-tYR"/>
+                        <viewControllerLayoutGuide type="bottom" id="gzc-Zl-1zM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="F4Q-ld-3Jr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FKA-TW-jeb">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="5Ly-ai-sJ7">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="iZ7-Gi-6Bi">
+                                            <connections>
+                                                <action selector="backToPreviousPage:" destination="xGe-F1-hkj" id="RUc-ot-b5E"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <rightBarButtonItems>
+                                            <barButtonItem systemItem="action" id="1Ai-aH-fQ6"/>
+                                            <barButtonItem systemItem="compose" id="p9n-lx-PqP"/>
+                                        </rightBarButtonItems>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Adf-EA-nkE">
+                                <rect key="frame" x="0.0" y="78" width="375" height="348"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="FKA-TW-jeb" firstAttribute="top" secondItem="o3S-gd-tYR" secondAttribute="bottom" id="JLc-r5-b69"/>
+                            <constraint firstItem="FKA-TW-jeb" firstAttribute="leading" secondItem="F4Q-ld-3Jr" secondAttribute="leading" id="erL-LB-YQF"/>
+                            <constraint firstAttribute="trailing" secondItem="FKA-TW-jeb" secondAttribute="trailing" id="hKJ-3s-KCK"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="petPhotoScrollView" destination="Adf-EA-nkE" id="c20-x1-zsK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UV6-Uu-zS6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1725.5999999999999" y="799.2503748125938"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="aki-2k-iHo">
