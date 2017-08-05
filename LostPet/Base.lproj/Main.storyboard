@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -115,21 +116,35 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Adf-EA-nkE">
-                                <rect key="frame" x="0.0" y="78" width="375" height="348"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Adf-EA-nkE">
+                                <rect key="frame" x="0.0" y="76" width="375" height="334"/>
                                 <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                             </scrollView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="7oF-1G-GKm">
+                                <rect key="frame" x="0.0" y="434" width="375" height="200"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="7oF-1G-GKm" firstAttribute="leading" secondItem="F4Q-ld-3Jr" secondAttribute="leading" id="5pv-J8-fah"/>
                             <constraint firstItem="FKA-TW-jeb" firstAttribute="top" secondItem="o3S-gd-tYR" secondAttribute="bottom" id="JLc-r5-b69"/>
+                            <constraint firstItem="7oF-1G-GKm" firstAttribute="top" secondItem="Adf-EA-nkE" secondAttribute="bottom" constant="24" id="b3T-vu-mVn"/>
+                            <constraint firstAttribute="trailing" secondItem="7oF-1G-GKm" secondAttribute="trailing" id="b7y-6L-k56"/>
                             <constraint firstItem="FKA-TW-jeb" firstAttribute="leading" secondItem="F4Q-ld-3Jr" secondAttribute="leading" id="erL-LB-YQF"/>
+                            <constraint firstAttribute="trailing" secondItem="Adf-EA-nkE" secondAttribute="trailing" id="fEE-Um-IW6"/>
                             <constraint firstAttribute="trailing" secondItem="FKA-TW-jeb" secondAttribute="trailing" id="hKJ-3s-KCK"/>
+                            <constraint firstItem="Adf-EA-nkE" firstAttribute="height" secondItem="F4Q-ld-3Jr" secondAttribute="height" multiplier="0.5" id="hkg-Kk-nRj"/>
+                            <constraint firstItem="7oF-1G-GKm" firstAttribute="height" secondItem="F4Q-ld-3Jr" secondAttribute="height" multiplier="0.3" id="m2F-4f-1Sq"/>
+                            <constraint firstItem="Adf-EA-nkE" firstAttribute="leading" secondItem="F4Q-ld-3Jr" secondAttribute="leading" id="qZm-mS-7Ey"/>
+                            <constraint firstItem="Adf-EA-nkE" firstAttribute="top" secondItem="FKA-TW-jeb" secondAttribute="bottom" constant="12" id="y3v-n4-Gkw"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="petPhotoScrollView" destination="Adf-EA-nkE" id="c20-x1-zsK"/>
+                        <outlet property="txtPetInfo" destination="7oF-1G-GKm" id="XsV-gg-MsV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UV6-Uu-zS6" userLabel="First Responder" sceneMemberID="firstResponder"/>

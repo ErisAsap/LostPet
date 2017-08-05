@@ -11,6 +11,7 @@ target 'LostPet' do
   pod 'Firebase/Database'
   pod 'Alamofire', '~> 4.4'
   pod 'AlamofireObjectMapper', '~> 4.0'
+  pod 'ObjectMapper', '~> 2.2'
   pod 'Eureka'
 
 end

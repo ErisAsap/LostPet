@@ -45,6 +45,8 @@
 		0FE073961F32D08300939400 /* pet16.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0FE073781F32D08300939400 /* pet16.jpg */; };
 		0FE073971F32D08300939400 /* pet17.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0FE073791F32D08300939400 /* pet17.jpg */; };
 		0FE073981F32D08300939400 /* pet18.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0FE0737A1F32D08300939400 /* pet18.jpg */; };
+		0FE0739D1F34B3B000939400 /* Pet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE0739C1F34B3B000939400 /* Pet.swift */; };
+		0FE0739F1F34DA7D00939400 /* LostPetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE0739E1F34DA7D00939400 /* LostPetData.swift */; };
 		6A145E1803BDC8D455B09F12 /* Pods_LostPet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E90A58AE5973E7FB07986901 /* Pods_LostPet.framework */; };
 /* End PBXBuildFile section */
 
@@ -89,6 +91,8 @@
 		0FE073781F32D08300939400 /* pet16.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pet16.jpg; sourceTree = "<group>"; };
 		0FE073791F32D08300939400 /* pet17.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pet17.jpg; sourceTree = "<group>"; };
 		0FE0737A1F32D08300939400 /* pet18.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pet18.jpg; sourceTree = "<group>"; };
+		0FE0739C1F34B3B000939400 /* Pet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pet.swift; sourceTree = "<group>"; };
+		0FE0739E1F34DA7D00939400 /* LostPetData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LostPetData.swift; sourceTree = "<group>"; };
 		4CDED9C4878FD77D98372FA5 /* Pods-LostPet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LostPet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LostPet/Pods-LostPet.debug.xcconfig"; sourceTree = "<group>"; };
 		7A2D154DCED5374A9A87C7FF /* Pods-LostPet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LostPet.release.xcconfig"; path = "Pods/Target Support Files/Pods-LostPet/Pods-LostPet.release.xcconfig"; sourceTree = "<group>"; };
 		E90A58AE5973E7FB07986901 /* Pods_LostPet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LostPet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -128,15 +132,13 @@
 		0FD0CEFA1F30E51200D0A533 /* LostPet */ = {
 			isa = PBXGroup;
 			children = (
-				0FD0CEFB1F30E51200D0A533 /* AppDelegate.swift */,
-				0FD0CEFD1F30E51200D0A533 /* ViewController.swift */,
 				0FD0CEFF1F30E51200D0A533 /* Main.storyboard */,
+				0FD0CEFD1F30E51200D0A533 /* ViewController.swift */,
 				0FE0732C1F32B15600939400 /* PetDetailViewController.swift */,
+				0FE0739E1F34DA7D00939400 /* LostPetData.swift */,
+				0FE0739C1F34B3B000939400 /* Pet.swift */,
 				0F7302461F322179008A75D5 /* PostCollectionViewCell.swift */,
-				0FD0CF021F30E51200D0A533 /* Assets.xcassets */,
-				0FD0CF041F30E51200D0A533 /* LaunchScreen.storyboard */,
-				0FD0CF071F30E51200D0A533 /* Info.plist */,
-				0F7302441F321A41008A75D5 /* GoogleService-Info.plist */,
+				0FE073A01F34DC6E00939400 /* Defalt File */,
 			);
 			path = LostPet;
 			sourceTree = "<group>";
@@ -192,6 +194,18 @@
 				0FE073681F32D08300939400 /* pet01-5.jpg */,
 			);
 			name = pet01;
+			sourceTree = "<group>";
+		};
+		0FE073A01F34DC6E00939400 /* Defalt File */ = {
+			isa = PBXGroup;
+			children = (
+				0FD0CEFB1F30E51200D0A533 /* AppDelegate.swift */,
+				0FD0CF021F30E51200D0A533 /* Assets.xcassets */,
+				0FD0CF041F30E51200D0A533 /* LaunchScreen.storyboard */,
+				0FD0CF071F30E51200D0A533 /* Info.plist */,
+				0F7302441F321A41008A75D5 /* GoogleService-Info.plist */,
+			);
+			name = "Defalt File";
 			sourceTree = "<group>";
 		};
 		4EB7ED8FDD5B5A7E0384FA8E /* Pods */ = {
@@ -366,6 +380,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FE0739D1F34B3B000939400 /* Pet.swift in Sources */,
+				0FE0739F1F34DA7D00939400 /* LostPetData.swift in Sources */,
 				0FD0CEFE1F30E51200D0A533 /* ViewController.swift in Sources */,
 				0FD0CEFC1F30E51200D0A533 /* AppDelegate.swift in Sources */,
 				0F7302471F322179008A75D5 /* PostCollectionViewCell.swift in Sources */,
