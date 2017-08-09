@@ -12,17 +12,18 @@ class PetDetailViewController: UIViewController {
 
     @IBOutlet weak var petPhotoScrollView: UIScrollView!
     var selectedNumber : Int!
-    @IBOutlet weak var txtPetInfo: UITextView!{
-        didSet{
-            if selectedNumber != nil {
-                var name = lostPets[selectedNumber].name
-                if name == ""{ name = "失主尚未提供" }
-                txtPetInfo.text  = "寵物姓名:\(name!)"
-            }
-        }
-    }
+    @IBOutlet weak var txtPetInfo: UITextView!
+//        {
+//        didSet{
+//            if selectedNumber != nil {
+//                var name = lostPetsFiltered[selectedNumber].name
+//                if name == ""{ name = "失主尚未提供" }
+//                txtPetInfo.text  = "寵物姓名:\(name!)"
+//            }
+//        }
+//    }
     
-    var previousPage: ViewController?
+    var previousPage: PostViewController?
     
 
     var selectedPet : String!{
