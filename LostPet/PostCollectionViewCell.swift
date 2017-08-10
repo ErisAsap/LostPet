@@ -13,4 +13,9 @@ class PostCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var petPhoto: UIImageView!
     @IBOutlet weak var petStatus: UILabel!
     
+    var pet :Pet?{
+        didSet{
+            petStatus.text = pet?.name
+        }
+    }
 }

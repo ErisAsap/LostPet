@@ -59,7 +59,7 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
     let postCell = "PostCell"
     
     var lostPets = [Pet]()
-    var lostPetsFiltered = [Pet]()
+    var lostPetsFiltered : [Pet]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,6 +67,8 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
         postCollectionView.delegate = self
         getLostPetsArrayWithAlamofire()
         
+
+
         //testFirebaseUsage()
         //getLostPetObjectWithSwift3()
         //getLostPetsObjectWithAlamofireObjectMapper() //記得打開AlamofireObjectMapper
@@ -76,6 +78,8 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    var jsonObject = [[String:String?]]()
     
     //MARK: 取得網路上的資料
     func getLostPetsArrayWithAlamofire(){
@@ -94,38 +98,59 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
                 return
             }
             
-            self.lostPets = jsonObject.map{
+            self.jsonObject = jsonObject
+            
+            self.lostPets = jsonObject[0..<500].map{
                 Pet(chip: $0["晶片號碼"] as? String, name: $0["寵物名"] as? String, type: $0["寵物別"] as? String, sex: $0["性別"] as? String, breed: $0["品種"] as? String, color: $0["毛色"] as? String, looks: $0["外觀"] as? String, feature: $0["特徵"] as? String, lastSeenTime: $0["遺失時間"] as? String, lastSeenAddr: $0["遺失地點"] as? String, contactName: $0["飼主姓名"] as? String, contactNumber: $0["連絡電話"] as? String, contactEmail: $0["Email"] as? String)
             }
-            print(self.lostPets[0])
+            print(self.lostPets[0..<2])
             self.lostPetsFiltered = self.lostPets
+            print("reload data")
+            self.postCollectionView.reloadData()
             //Aoamofire閉包指令結束
         }
         //取得資料func結束
     }
     
-    
     //MARK: 集合視圖的建置
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return postData.count
+        return 1
     }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return postData[section].count
+        return 500
     }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        Thread.setThreadPriority(0)
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: postCell, for: indexPath) as! PostCollectionViewCell
-        cell.petStatus.text = postData[indexPath.section][indexPath.row]
-        cell.petPhoto.image = UIImage(named: "\(postData[indexPath.section][indexPath.row]).jpg")
-        
+        if let pet = lostPetsFiltered?[indexPath.row]{
+        cell.pet = pet        }
         return cell
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedPet = postData[indexPath.section][indexPath.row]
         performSegue(withIdentifier: "SelectPet", sender: nil)
     }
+
+    
+//    //MARK: 集合視圖的建置
+//    func numberOfSections(in collectionView: UICollectionView) -> Int {
+//        return postData.count
+//    }
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        return postData[section].count
+//    }
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        let pet = lostPetsFiltered[indexPath.row]
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: postCell, for: indexPath) as! PostCollectionViewCell
+//        cell.petStatus.text = postData[indexPath.section][indexPath.row]
+//        cell.petPhoto.image = UIImage(named: "\(postData[indexPath.section][indexPath.row]).jpg")
+//        return cell
+//    }
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        selectedPet = postData[indexPath.section][indexPath.row]
+//        performSegue(withIdentifier: "SelectPet", sender: nil)
+//    }
     
     
     

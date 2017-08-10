@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F01A1FD1F3C6B980062C7DF /* FilterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F01A1FC1F3C6B980062C7DF /* FilterButton.swift */; };
 		0F0C87FB1F3B681800E9602F /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0C87FA1F3B681800E9602F /* PostViewController.swift */; };
 		0F7302451F321A41008A75D5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F7302441F321A41008A75D5 /* GoogleService-Info.plist */; };
 		0F7302471F322179008A75D5 /* PostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7302461F322179008A75D5 /* PostCollectionViewCell.swift */; };
@@ -50,6 +51,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0F01A1FC1F3C6B980062C7DF /* FilterButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilterButton.swift; path = ../FilterButton.swift; sourceTree = "<group>"; };
 		0F0C87FA1F3B681800E9602F /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		0F7302441F321A41008A75D5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0F7302461F322179008A75D5 /* PostCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 		0FD0CEFA1F30E51200D0A533 /* LostPet */ = {
 			isa = PBXGroup;
 			children = (
+				0F01A1FC1F3C6B980062C7DF /* FilterButton.swift */,
 				0FD0CEFF1F30E51200D0A533 /* Main.storyboard */,
 				0F0C87FA1F3B681800E9602F /* PostViewController.swift */,
 				0FE0732C1F32B15600939400 /* PetDetailViewController.swift */,
@@ -382,6 +385,7 @@
 				0FD0CEFC1F30E51200D0A533 /* AppDelegate.swift in Sources */,
 				0F7302471F322179008A75D5 /* PostCollectionViewCell.swift in Sources */,
 				0FE0732D1F32B15600939400 /* PetDetailViewController.swift in Sources */,
+				0F01A1FD1F3C6B980062C7DF /* FilterButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
