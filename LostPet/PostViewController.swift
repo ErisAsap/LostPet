@@ -17,9 +17,7 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
     
     
     @IBOutlet weak var searchBar: UISearchBar!
-
     @IBOutlet weak var catIcon: UIButton!
-    
     @IBOutlet weak var dogIcon: UIButton!
     
     @IBOutlet weak var postCollectionView: UICollectionView!
@@ -73,9 +71,10 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
                 print("JSON format to object error")
                 return
             }
+            
 
             self.lostPets = jsonObject[0..<500].map{
-                Pet(chip: $0["晶片號碼"] as? String, name: $0["寵物名"] as? String, type: $0["寵物別"] as? String, sex: $0["性別"] as? String, breed: $0["品種"] as? String, color: $0["毛色"] as? String, looks: $0["外觀"] as? String, feature: $0["特徵"] as? String, lastSeenTime: $0["遺失時間"] as? String, lastSeenAddr: $0["遺失地點"] as? String, contactName: $0["飼主姓名"] as? String, contactNumber: $0["連絡電話"] as? String, contactEmail: $0["Email"] as? String)
+                Pet(chip: $0["晶片號碼"] as? String, name: $0["寵物名"] as? String, type: $0["寵物別"] as? String, sex: $0["性別"] as? String, breed: $0["品種"] as? String, color: $0["毛色"] as? String, looks: $0["外觀"] as? String, feature: $0["特徵"] as? String, lastSeenTime: $0["遺失時間"] as? String, lastSeenAddr: $0["遺失地點"] as? String, contactName: $0["飼主姓名"] as? String, contactNumber: $0["連絡電話"] as? String, contactEmail: $0["Email"] as? String, mainPhoto: $0["主要照片"] as? String)
             }
             print(self.lostPets[0..<2])
             self.lostPetsFiltered = self.lostPets

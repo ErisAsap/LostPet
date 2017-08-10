@@ -7,7 +7,7 @@
 //
 
 
-import Foundation
+import UIKit
 //import ObjectMapper
 
 struct Pet {
@@ -24,6 +24,7 @@ struct Pet {
     var contactName : String?
     var contactNumber : String?
     var contactEmail : String?
+    var mainPhoto : String?
 }
 
 
