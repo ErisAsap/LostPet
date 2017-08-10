@@ -13,75 +13,51 @@ import Alamofire
 //import AlamofireObjectMapper
 
 
-struct Pet {
-    var chip : String?
-    var name : String?
-    var type : String?
-    var sex : String?
-    var breed : String?
-    var color : String?
-    var looks : String?
-    var feature : String?
-    var lastSeenTime : String?
-    var lastSeenAddr : String?
-    var contactName : String?
-    var contactNumber : String?
-    var contactEmail : String?
-}
+class PostViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UISearchBarDelegate {
+    
+    
+    @IBOutlet weak var searchBar: UISearchBar!
 
-//取得政府公開遺失資訊的URL
-let lostPetJsonURL = "http://data.coa.gov.tw/Service/OpenData/DataFileService.aspx?UnitId=127"
-//let lostPetJsonURL = "https://lostpet-8d29a.firebaseio.com/json" firebase的DB連結，以後要做即時DB時使用
-//因為不是https已經去改了plist裡面的設定
-
-//寵物帳貼的名稱，現在基本上都是照片名
-var postData = [
-    ["pet00","pet01","pet02","pet03","pet04","pet05","pet06","pet07","pet08","pet09","pet10"],
-    ["pet11","pet12","pet13","pet14","pet15"],
-    ["pet16","pet17","pet18"]
-]
-
-//寵物首張照片 對上該寵物其他照片的字典
-let petPhotosDic = [
-    "pet00":["pet00-0","pet00-1","pet00-2","pet00-3","pet00-4"],
-    "pet01":["pet01-0","pet01-1","pet01-2","pet01-3","pet01-4","pet01-5"]
-]
-
-
-
-
-class PostViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource {
+    @IBOutlet weak var catIcon: UIButton!
+    
+    @IBOutlet weak var dogIcon: UIButton!
     
     @IBOutlet weak var postCollectionView: UICollectionView!
-    
     var selectedPet: String?
-    
     let postCell = "PostCell"
-    
     var lostPets = [Pet]()
     var lostPetsFiltered : [Pet]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchBar.delegate = self
         postCollectionView.dataSource = self
         postCollectionView.delegate = self
         getLostPetsArrayWithAlamofire()
         
-
-
         //testFirebaseUsage()
         //getLostPetObjectWithSwift3()
-        //getLostPetsObjectWithAlamofireObjectMapper() //記得打開AlamofireObjectMapper
+        //getLostPetsObjectWithAlamofireObjectMapper() //記得打開import AlamofireObjectMapper
     }
     
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    @IBAction func sortByCat(_ sender: Any) {
+        catIcon.isSelected = !catIcon.isSelected
     }
     
-    var jsonObject = [[String:String?]]()
+    @IBAction func sortByDog(_ sender: Any) {
+        dogIcon.isSelected = !dogIcon.isSelected
+    }
+
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        let keywords = searchBar.text
+        print(keywords!)
+    }
     
-    //MARK: 取得網路上的資料
+    func updatePost(){
+        self.postCollectionView.reloadData()
+    }
+    
+    //MARK: 取得政府URL上的資料，轉換成Pet物件儲存至LostPets陣列中
     func getLostPetsArrayWithAlamofire(){
         
         Alamofire.request(lostPetJsonURL).responseJSON { response in
@@ -97,16 +73,14 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
                 print("JSON format to object error")
                 return
             }
-            
-            self.jsonObject = jsonObject
-            
+
             self.lostPets = jsonObject[0..<500].map{
                 Pet(chip: $0["晶片號碼"] as? String, name: $0["寵物名"] as? String, type: $0["寵物別"] as? String, sex: $0["性別"] as? String, breed: $0["品種"] as? String, color: $0["毛色"] as? String, looks: $0["外觀"] as? String, feature: $0["特徵"] as? String, lastSeenTime: $0["遺失時間"] as? String, lastSeenAddr: $0["遺失地點"] as? String, contactName: $0["飼主姓名"] as? String, contactNumber: $0["連絡電話"] as? String, contactEmail: $0["Email"] as? String)
             }
             print(self.lostPets[0..<2])
             self.lostPetsFiltered = self.lostPets
             print("reload data")
-            self.postCollectionView.reloadData()
+            self.updatePost()
             //Aoamofire閉包指令結束
         }
         //取得資料func結束
@@ -132,7 +106,18 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
         performSegue(withIdentifier: "SelectPet", sender: nil)
     }
 
-    
+        //MARK: 頁面控制
+        //前往動物資訊頁
+        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            if segue.identifier == "SelectPet"{
+                let petInfoPage = segue.destination as! PetDetailViewController
+                petInfoPage.selectedPet = self.selectedPet
+            }
+        }
+        
+}
+
+
 //    //MARK: 集合視圖的建置
 //    func numberOfSections(in collectionView: UICollectionView) -> Int {
 //        return postData.count
@@ -152,18 +137,7 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
 //        performSegue(withIdentifier: "SelectPet", sender: nil)
 //    }
     
-    
-    
-    //MARK: 頁面控制
-    //前往動物資訊頁
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "SelectPet"{
-            let petInfoPage = segue.destination as! PetDetailViewController
-            petInfoPage.selectedPet = self.selectedPet
-        }
-    }
-    
-}
+
 
 //Firebase的設定
 //var ref: DatabaseReference!
@@ -212,7 +186,7 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
  
  }*/
 
-//用AlamofireObjectMapper
+//MARK: 用AlamofireObjectMapper取得物件
 //
 //    func getLostPetsObjectWithAlamofireObjectMapper(){
 //        Alamofire.request(lostPetJsonURL).responseArray { (response:DataResponse<[Pet]>) in
@@ -226,6 +200,7 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
 //    }
 
 //testFirebaseUsage() firebase的DB的基本寫入方法的測試func
+
 /*func testFirebaseUsage(){
  print("start changing firbase DB")
  ref = Database.database().reference()

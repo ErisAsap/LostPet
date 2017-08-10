@@ -10,6 +10,22 @@
 import Foundation
 //import ObjectMapper
 
+struct Pet {
+    var chip : String?
+    var name : String?
+    var type : String?
+    var sex : String?
+    var breed : String?
+    var color : String?
+    var looks : String?
+    var feature : String?
+    var lastSeenTime : String?
+    var lastSeenAddr : String?
+    var contactName : String?
+    var contactNumber : String?
+    var contactEmail : String?
+}
+
 
 //MARK: 根據Object Mapper第三方套件標準做的類型宣告
 //struct Pet: Mappable{

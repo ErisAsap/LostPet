@@ -24,7 +24,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9LB-b6-S9b">
-                                <rect key="frame" x="0.0" y="100" width="375" height="517"/>
+                                <rect key="frame" x="0.0" y="118.5" width="375" height="498.5"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="2" id="aDo-RU-iVt">
                                     <size key="itemSize" width="120" height="120"/>
@@ -67,25 +67,58 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="GRW-gr-zmi">
-                                <rect key="frame" x="0.0" y="50" width="375" height="30"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="4er-nO-gXQ">
+                                <rect key="frame" x="0.0" y="20" width="375" height="52"/>
+                                <subviews>
+                                    <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="ia9-qL-3ri">
+                                        <rect key="frame" x="0.0" y="0.0" width="253" height="52"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </searchBar>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IaJ-cJ-oFZ">
+                                        <rect key="frame" x="253" y="0.0" width="61" height="52"/>
+                                        <state key="normal" image="catStroke"/>
+                                        <state key="selected" image="catColor"/>
+                                        <state key="highlighted" image="catStroke"/>
+                                        <connections>
+                                            <action selector="sortByCat:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Mb0-gh-MeN"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7mb-8O-uNw">
+                                        <rect key="frame" x="314" y="0.0" width="61" height="52"/>
+                                        <state key="normal" image="dogStroke"/>
+                                        <state key="selected" image="dogColor"/>
+                                        <state key="highlighted" image="dogStroke"/>
+                                        <connections>
+                                            <action selector="sortByDog:" destination="BYZ-38-t0r" eventType="touchUpInside" id="av3-ds-m75"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="7mb-8O-uNw" firstAttribute="width" secondItem="IaJ-cJ-oFZ" secondAttribute="width" id="zHU-2Z-EPR"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="GRW-gr-zmi">
+                                <rect key="frame" x="10" y="77" width="349" height="36.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g1b-1W-jw8" customClass="FilterButton" customModule="LostPet" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="125" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="109.5" height="36.5"/>
+                                        <color key="backgroundColor" red="0.053523304780000003" green="0.83743780850000005" blue="0.283556168" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="tintColor" red="0.98777514365430286" green="1" blue="0.96349517322208611" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Button">
                                             <color key="titleColor" red="1" green="0.72201838048940803" blue="0.26530576156150854" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SDt-WT-JTP" customClass="FilterButton" customModule="LostPet" customModuleProvider="target">
-                                        <rect key="frame" x="125" y="0.0" width="125" height="30"/>
+                                        <rect key="frame" x="119.5" y="0.0" width="110" height="36.5"/>
+                                        <color key="backgroundColor" red="0.053523304780000003" green="0.83743780850000005" blue="0.283556168" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="tintColor" red="0.98777514369999997" green="1" blue="0.9634951732" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Button">
                                             <color key="titleColor" red="1" green="0.7220183805" blue="0.26530576160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ji7-pv-O4g" customClass="FilterButton" customModule="LostPet" customModuleProvider="target">
-                                        <rect key="frame" x="250" y="0.0" width="125" height="30"/>
+                                        <rect key="frame" x="239.5" y="0.0" width="109.5" height="36.5"/>
+                                        <color key="backgroundColor" red="0.053523304780000003" green="0.83743780850000005" blue="0.283556168" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="tintColor" red="0.98777514369999997" green="1" blue="0.9634951732" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Button">
                                             <color key="titleColor" red="1" green="0.7220183805" blue="0.26530576160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -96,12 +129,16 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="9LB-b6-S9b" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="100" id="3F6-Ku-mX3"/>
+                            <constraint firstItem="4er-nO-gXQ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="3uD-q9-Hlv"/>
                             <constraint firstItem="9LB-b6-S9b" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="6ZM-Hz-EdR"/>
                             <constraint firstAttribute="bottom" secondItem="9LB-b6-S9b" secondAttribute="bottom" constant="50" id="QSJ-Lq-Fza"/>
-                            <constraint firstItem="GRW-gr-zmi" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="QYb-rr-8P5"/>
-                            <constraint firstAttribute="trailing" secondItem="GRW-gr-zmi" secondAttribute="trailing" id="aou-9n-fF6"/>
-                            <constraint firstItem="GRW-gr-zmi" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="30" id="ram-vg-cX4"/>
+                            <constraint firstItem="GRW-gr-zmi" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="QYb-rr-8P5"/>
+                            <constraint firstAttribute="trailing" secondItem="GRW-gr-zmi" secondAttribute="trailing" constant="16" id="aou-9n-fF6"/>
+                            <constraint firstItem="9LB-b6-S9b" firstAttribute="top" secondItem="GRW-gr-zmi" secondAttribute="bottom" constant="5" id="eic-zC-MHs"/>
+                            <constraint firstItem="4er-nO-gXQ" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="20" id="fdO-5m-xgm"/>
+                            <constraint firstItem="GRW-gr-zmi" firstAttribute="top" secondItem="4er-nO-gXQ" secondAttribute="bottom" constant="5" id="gmu-2a-UYx"/>
+                            <constraint firstItem="GRW-gr-zmi" firstAttribute="height" secondItem="4er-nO-gXQ" secondAttribute="height" multiplier="0.7" id="itR-FX-0f7"/>
+                            <constraint firstAttribute="trailing" secondItem="4er-nO-gXQ" secondAttribute="trailing" id="jbk-ZX-bGe"/>
                             <constraint firstAttribute="trailing" secondItem="9LB-b6-S9b" secondAttribute="trailing" id="w3S-Xs-hOT"/>
                         </constraints>
                     </view>
@@ -109,11 +146,23 @@
                         <barButtonItem key="rightBarButtonItem" title="Filter" id="0Mm-2r-Sjo"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="catIcon" destination="IaJ-cJ-oFZ" id="CBf-Si-OxF"/>
+                        <outlet property="dogIcon" destination="7mb-8O-uNw" id="xDw-IJ-rz3"/>
                         <outlet property="postCollectionView" destination="9LB-b6-S9b" id="Aez-CT-pFj"/>
+                        <outlet property="searchBar" destination="ia9-qL-3ri" id="Gh6-pf-YiV"/>
+                        <outlet property="searchDisplayController" destination="2Ai-CQ-8lT" id="gcG-uO-tRj"/>
                         <segue destination="xGe-F1-hkj" kind="presentation" identifier="SelectPet" id="PYL-Sy-XL3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="2Ai-CQ-8lT">
+                    <connections>
+                        <outlet property="delegate" destination="BYZ-38-t0r" id="Vdq-jq-V0h"/>
+                        <outlet property="searchContentsController" destination="BYZ-38-t0r" id="uVs-6f-QVv"/>
+                        <outlet property="searchResultsDataSource" destination="BYZ-38-t0r" id="NdP-iz-L2h"/>
+                        <outlet property="searchResultsDelegate" destination="BYZ-38-t0r" id="vl6-Wa-09K"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="981.60000000000002" y="684.10794602698661"/>
         </scene>
@@ -181,4 +230,10 @@
             <point key="canvasLocation" x="1725.5999999999999" y="799.2503748125938"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="catColor" width="54" height="50"/>
+        <image name="catStroke" width="53" height="52"/>
+        <image name="dogColor" width="68" height="47"/>
+        <image name="dogStroke" width="69" height="49"/>
+    </resources>
 </document>

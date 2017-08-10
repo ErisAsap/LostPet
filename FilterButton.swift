@@ -12,7 +12,7 @@ class FilterButton: UIButton {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        layer.borderWidth = 1   //除以UIScreen.main.nativeScale就會變成pixel超細，最小點
+        layer.borderWidth = 2   //除以UIScreen.main.nativeScale就會變成pixel超細，最小點
         contentEdgeInsets = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
         titleLabel?.adjustsFontForContentSizeCategory = true
         titleLabel?.adjustsFontSizeToFitWidth = true
