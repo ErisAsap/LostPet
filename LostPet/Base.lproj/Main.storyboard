@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -42,10 +43,29 @@
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wcx-dN-FWD">
                                                     <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                                                    <color key="tintColor" red="0.2492355054338774" green="0.48684949524702581" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E2g-xG-Tjq">
-                                                    <rect key="frame" x="39" y="93" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017/08/10" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QgL-sj-mt0">
+                                                    <rect key="frame" x="6" y="8" width="108" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="N6n-Ah-Pem"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="狗 混種狗" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ejg-V3-JwV">
+                                                    <rect key="frame" x="6" y="30" width="108" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="vJo-xD-7lS"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="台北市蘆洲區永樂街110號9樓" lineBreakMode="tailTruncation" numberOfLines="3" minimumFontSize="8" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vC7-ZG-Eks">
+                                                    <rect key="frame" x="6" y="52" width="108" height="66"/>
+                                                    <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -53,16 +73,26 @@
                                         </view>
                                         <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
+                                            <constraint firstItem="QgL-sj-mt0" firstAttribute="centerX" secondItem="1AS-UL-Nz7" secondAttribute="centerX" id="51y-F0-Ma3"/>
+                                            <constraint firstItem="vC7-ZG-Eks" firstAttribute="centerX" secondItem="1AS-UL-Nz7" secondAttribute="centerX" id="9WK-8Y-ueD"/>
                                             <constraint firstItem="wcx-dN-FWD" firstAttribute="leading" secondItem="1AS-UL-Nz7" secondAttribute="leading" id="FH0-rQ-LRh"/>
                                             <constraint firstItem="wcx-dN-FWD" firstAttribute="top" secondItem="1AS-UL-Nz7" secondAttribute="top" id="Ghv-FL-7Kx"/>
                                             <constraint firstAttribute="bottom" secondItem="wcx-dN-FWD" secondAttribute="bottom" id="NMk-O2-x1p"/>
+                                            <constraint firstItem="Ejg-V3-JwV" firstAttribute="centerX" secondItem="1AS-UL-Nz7" secondAttribute="centerX" id="Rq7-sg-qeK"/>
+                                            <constraint firstItem="QgL-sj-mt0" firstAttribute="top" secondItem="1AS-UL-Nz7" secondAttribute="topMargin" id="UaM-f5-7gt"/>
+                                            <constraint firstItem="vC7-ZG-Eks" firstAttribute="width" secondItem="1AS-UL-Nz7" secondAttribute="width" multiplier="0.9" id="dzL-en-uEM"/>
+                                            <constraint firstItem="Ejg-V3-JwV" firstAttribute="top" secondItem="QgL-sj-mt0" secondAttribute="bottom" constant="1" id="fQy-p8-g7i"/>
+                                            <constraint firstItem="vC7-ZG-Eks" firstAttribute="top" secondItem="Ejg-V3-JwV" secondAttribute="bottom" constant="1" id="fdH-I0-RAA"/>
                                             <constraint firstAttribute="trailing" secondItem="wcx-dN-FWD" secondAttribute="trailing" id="n1l-FC-Q0b"/>
-                                            <constraint firstItem="E2g-xG-Tjq" firstAttribute="centerX" secondItem="1AS-UL-Nz7" secondAttribute="centerX" id="vHP-Es-KR0"/>
-                                            <constraint firstAttribute="bottom" secondItem="E2g-xG-Tjq" secondAttribute="bottom" constant="6" id="zXB-v4-CTi"/>
+                                            <constraint firstAttribute="bottom" secondItem="vC7-ZG-Eks" secondAttribute="bottom" constant="2" id="qVH-cI-BeB"/>
+                                            <constraint firstItem="QgL-sj-mt0" firstAttribute="width" secondItem="1AS-UL-Nz7" secondAttribute="width" multiplier="0.9" id="stm-dC-myy"/>
+                                            <constraint firstItem="Ejg-V3-JwV" firstAttribute="width" secondItem="1AS-UL-Nz7" secondAttribute="width" multiplier="0.9" id="y8y-Ud-FYj"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="petPhoto" destination="wcx-dN-FWD" id="hzP-pp-1wm"/>
-                                            <outlet property="petStatus" destination="E2g-xG-Tjq" id="PwW-s4-JDi"/>
+                                            <outlet property="lastSeenAddr" destination="vC7-ZG-Eks" id="pY5-8s-HSH"/>
+                                            <outlet property="lastSeenTime" destination="QgL-sj-mt0" id="3XW-tq-fRY"/>
+                                            <outlet property="mainPhoto" destination="wcx-dN-FWD" id="4mu-gd-95z"/>
+                                            <outlet property="typeAndBreed" destination="Ejg-V3-JwV" id="I5a-nC-ddv"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

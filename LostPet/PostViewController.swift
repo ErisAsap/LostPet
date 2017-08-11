@@ -24,7 +24,7 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
     var selectedPet: String?
     let postCell = "PostCell"
     var lostPets = [Pet]()
-    var lostPetsFiltered : [Pet]?
+    var filteredPets = [Pet]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +32,12 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
         postCollectionView.dataSource = self
         postCollectionView.delegate = self
         getLostPetsArrayWithAlamofire()
+        
+        //改變顏色
+        let origImage = UIImage(named: "catStroke")
+        let tintedImage = origImage?.withRenderingMode(.alwaysTemplate)
+        catIcon.setImage(tintedImage, for: .normal)
+        catIcon.tintColor = #colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1)
         
         //testFirebaseUsage()
         //getLostPetObjectWithSwift3()
@@ -46,10 +52,13 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
         dogIcon.isSelected = !dogIcon.isSelected
     }
 
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        let keywords = searchBar.text
-        print(keywords!)
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        guard let keywords = searchBar.text, keywords != "" else {return}
+//        print(keywords)
+//        filteredPets = filteredPets.filter{($0.lastSeenAddr?.lowercased() ?? "").contains(keywords.lowercased())}
+//        updatePost()
     }
+
     
     func updatePost(){
         self.postCollectionView.reloadData()
@@ -77,7 +86,7 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
                 Pet(chip: $0["晶片號碼"] as? String, name: $0["寵物名"] as? String, type: $0["寵物別"] as? String, sex: $0["性別"] as? String, breed: $0["品種"] as? String, color: $0["毛色"] as? String, looks: $0["外觀"] as? String, feature: $0["特徵"] as? String, lastSeenTime: $0["遺失時間"] as? String, lastSeenAddr: $0["遺失地點"] as? String, contactName: $0["飼主姓名"] as? String, contactNumber: $0["連絡電話"] as? String, contactEmail: $0["Email"] as? String, mainPhoto: $0["主要照片"] as? String)
             }
             print(self.lostPets[0..<2])
-            self.lostPetsFiltered = self.lostPets
+            self.filteredPets = self.lostPets
             print("reload data")
             self.updatePost()
             //Aoamofire閉包指令結束
@@ -90,13 +99,13 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
         return 1
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 500
+        return 10
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        Thread.setThreadPriority(0)
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: postCell, for: indexPath) as! PostCollectionViewCell
-        if let pet = lostPetsFiltered?[indexPath.row]{
-        cell.pet = pet        }
+        if filteredPets.count > 0{
+        let pet = filteredPets[indexPath.row]
+        cell.pet = pet}
         return cell
     }
 
@@ -125,7 +134,7 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
 //        return postData[section].count
 //    }
 //    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let pet = lostPetsFiltered[indexPath.row]
+//        let pet = filteredPets[indexPath.row]
 //        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: postCell, for: indexPath) as! PostCollectionViewCell
 //        cell.petStatus.text = postData[indexPath.section][indexPath.row]
 //        cell.petPhoto.image = UIImage(named: "\(postData[indexPath.section][indexPath.row]).jpg")

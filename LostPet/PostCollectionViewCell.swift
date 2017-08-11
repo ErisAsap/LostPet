@@ -9,13 +9,19 @@
 import UIKit
 
 class PostCollectionViewCell: UICollectionViewCell {
+
     
-    @IBOutlet weak var petPhoto: UIImageView!
-    @IBOutlet weak var petStatus: UILabel!
+    @IBOutlet weak var mainPhoto: UIImageView!
+    @IBOutlet weak var lastSeenTime : UILabel!
+    @IBOutlet weak var typeAndBreed : UILabel!
+    @IBOutlet weak var lastSeenAddr : UILabel!
     
     var pet :Pet?{
         didSet{
-            petStatus.text = pet?.name
+            lastSeenTime.text = pet?.lastSeenTime
+            typeAndBreed.text = "\(pet?.type ?? "") \(pet?.breed ?? "")"
+            lastSeenAddr.text = pet?.lastSeenAddr
+            lastSeenAddr.sizeToFit() //這個功能可以讓文字跑到最左上角
         }
     }
 }
