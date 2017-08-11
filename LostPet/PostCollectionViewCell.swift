@@ -20,8 +20,9 @@ class PostCollectionViewCell: UICollectionViewCell {
         didSet{
             lastSeenTime.text = pet?.lastSeenTime
             typeAndBreed.text = "\(pet?.type ?? "") \(pet?.breed ?? "")"
+            lastSeenAddr.sizeToFit()
             lastSeenAddr.text = pet?.lastSeenAddr
-            lastSeenAddr.sizeToFit() //這個功能可以讓文字跑到最左上角
+             //這個功能可以讓文字跑到最左上角
         }
     }
 }

@@ -187,12 +187,12 @@
 		0FD0CEFA1F30E51200D0A533 /* LostPet */ = {
 			isa = PBXGroup;
 			children = (
-				0F01A1FC1F3C6B980062C7DF /* FilterButton.swift */,
 				0FD0CEFF1F30E51200D0A533 /* Main.storyboard */,
 				0F0C87FA1F3B681800E9602F /* PostViewController.swift */,
-				0F01A21C1F3CA5EB0062C7DF /* PetData.swift */,
 				0FE0732C1F32B15600939400 /* PetDetailViewController.swift */,
 				0FE0739C1F34B3B000939400 /* Pet.swift */,
+				0F01A1FC1F3C6B980062C7DF /* FilterButton.swift */,
+				0F01A21C1F3CA5EB0062C7DF /* PetData.swift */,
 				0F7302461F322179008A75D5 /* PostCollectionViewCell.swift */,
 				0FE073A01F34DC6E00939400 /* Defalt File */,
 			);

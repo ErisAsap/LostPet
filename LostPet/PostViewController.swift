@@ -45,22 +45,46 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
     }
     
     @IBAction func sortByCat(_ sender: Any) {
+        print("start sortByCat")
         catIcon.isSelected = !catIcon.isSelected
+        updatePost()
     }
     
     @IBAction func sortByDog(_ sender: Any) {
+        print("start sortByDog")
         dogIcon.isSelected = !dogIcon.isSelected
+        updatePost()
     }
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        guard let keywords = searchBar.text, keywords != "" else {return}
-//        print(keywords)
-//        filteredPets = filteredPets.filter{($0.lastSeenAddr?.lowercased() ?? "").contains(keywords.lowercased())}
-//        updatePost()
+        print("start searching")
+        guard let keywords = searchBar.text else {return}
+        if keywords == ""{
+            filteredPets = lostPets
+            updatePost()
+            return
+        }
+        print(keywords)
+        filteredPets = filteredPets.filter{($0.lastSeenAddr?.lowercased() ?? "").contains(keywords.lowercased())}
+        updatePost()
     }
 
     
     func updatePost(){
+        print("start updating Post")
+        var newList = filteredPets
+        if !dogIcon.isSelected{
+            print("dog is not selected")
+            newList = newList.filter{$0.type != "狗"}
+            print("dog been filtered out from list")
+        }
+        if !catIcon.isSelected{
+            print("cat is not selected")
+            newList = newList.filter{$0.type != "貓"}
+            print("cat been filtered out from list")
+        }
+        filteredPets = newList
+        print("start reload View")
         self.postCollectionView.reloadData()
     }
     
@@ -85,9 +109,9 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
             self.lostPets = jsonObject[0..<500].map{
                 Pet(chip: $0["晶片號碼"] as? String, name: $0["寵物名"] as? String, type: $0["寵物別"] as? String, sex: $0["性別"] as? String, breed: $0["品種"] as? String, color: $0["毛色"] as? String, looks: $0["外觀"] as? String, feature: $0["特徵"] as? String, lastSeenTime: $0["遺失時間"] as? String, lastSeenAddr: $0["遺失地點"] as? String, contactName: $0["飼主姓名"] as? String, contactNumber: $0["連絡電話"] as? String, contactEmail: $0["Email"] as? String, mainPhoto: $0["主要照片"] as? String)
             }
-            print(self.lostPets[0..<2])
+//            print(self.lostPets[0..<2])
             self.filteredPets = self.lostPets
-            print("reload data")
+            print("new data for post have built")
             self.updatePost()
             //Aoamofire閉包指令結束
         }
@@ -99,7 +123,9 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
         return 1
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        if filteredPets.count > 0{
+            return filteredPets.count}
+        return 0
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: postCell, for: indexPath) as! PostCollectionViewCell
