@@ -44,8 +44,13 @@ class PetDetailViewController: UIViewController {
         super.viewDidLoad()
         print("PetDetailPageDidLoad")
         setUpPhotosScrollView()
-    //End of viewDidLoad
-    }
+  
+        //MARK: chang Add
+        self.navigationController?.isNavigationBarHidden = false
+        self.navigationItem.title = selectedPet
+        print(selectedPet)
+        
+    }  //End of viewDidLoad
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -53,29 +58,36 @@ class PetDetailViewController: UIViewController {
     
     //頁面控制:回到上一面
     @IBAction func backToPreviousPage(_ sender: Any) {
-        presentingViewController?.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
+        //presentingViewController?.dismiss(animated: true, completion: nil)
     }
         
     //頁面佈置:寵物照片展示區
     private func setUpPhotosScrollView(){
         
         //確定有照片
-        guard let petPhotos = petPhotosDic[selectedPet!] else {
-            print("failed to get selectedPet")
-            return }
+//        guard let petPhotos = previousPage?.filteredPets[0]["cat00"] else {
+//        //guard let petPhotos = petPhotosDic[selectedPet!] else {
+//            print("failed to get selectedPet")
+//            return }
+        let petPhotos = [
+            "cat00":["cat00-0","cat00-1","cat00-2","cat00-3","cat00-4"],
+            "dog00":["dog00-0","dog00-1","dog00-2","dog00-3","dog00-4","dog00-5"]]
         
-        //設定Scroll Veiw大小
-        petPhotoScrollView.contentSize.width = petPhotoScrollView.frame.width * CGFloat(petPhotos.count)
+
         
         //在Scroll View上加上照片
-        for itemNumber in 0 ..< petPhotos.count {
+        let xx = petPhotos[selectedPet]!.count
+        print(xx)
+        //設定Scroll Veiw大小
+        petPhotoScrollView.contentSize.width = petPhotoScrollView.frame.width * CGFloat(xx)
+        for itemNumber in 0 ..< xx {
         let petPhotoImageView = UIImageView()
-        petPhotoImageView.image = UIImage(named: "\(petPhotos[itemNumber]).jpg")
+        petPhotoImageView.image = UIImage(named: "\(petPhotos[selectedPet]![itemNumber]).jpg")
         petPhotoImageView.contentMode = .scaleAspectFit
         let imageStartX = self.petPhotoScrollView.bounds.width * CGFloat(itemNumber)
         petPhotoImageView.frame = CGRect(x: imageStartX, y: 0, width: self.petPhotoScrollView.bounds.width, height: self.petPhotoScrollView.bounds.height)
         petPhotoScrollView.addSubview(petPhotoImageView)
-            
         }
     }
     

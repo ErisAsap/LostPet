@@ -35,7 +35,7 @@ var dogPhotos = ["dog00",
 
 //寵物帳貼的名稱，現在基本上都是照片名
 var postData = [
-    ["pet00","pet01","pet02","pet03","pet04","pet05","pet06","pet07","pet08","pet09","pet10"],
+    ["cat00","cat01","pet02","pet03","pet04","pet05","pet06","pet07","pet08","pet09","pet10"],
     ["pet11","pet12","pet13","pet14","pet15"],
     ["pet16","pet17","pet18"]
 ]
