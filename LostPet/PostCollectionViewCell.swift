@@ -22,7 +22,11 @@ class PostCollectionViewCell: UICollectionViewCell {
             typeAndBreed.text = "\(pet?.type ?? "") \(pet?.breed ?? "")"
             lastSeenAddr.sizeToFit()
             lastSeenAddr.text = pet?.lastSeenAddr
-             //這個功能可以讓文字跑到最左上角
+            mainPhoto.alpha = 0.5
+            if let photoName = pet?.mainPhoto{
+                mainPhoto.image = UIImage(named:photoName)
+            }
+            //這個功能可以讓文字跑到最左上角
         }
     }
 }

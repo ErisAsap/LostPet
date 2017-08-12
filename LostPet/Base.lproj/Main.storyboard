@@ -28,25 +28,25 @@
                                 <rect key="frame" x="0.0" y="129" width="375" height="488"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="2" id="aDo-RU-iVt">
-                                    <size key="itemSize" width="120" height="120"/>
+                                    <size key="itemSize" width="130" height="130"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="2" minY="2" maxX="2" maxY="2"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PostCell" id="1AS-UL-Nz7" customClass="PostCollectionViewCell" customModule="LostPet" customModuleProvider="target">
-                                        <rect key="frame" x="2" y="2" width="120" height="120"/>
+                                        <rect key="frame" x="2" y="2" width="130" height="130"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="130" height="130"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wcx-dN-FWD">
-                                                    <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
-                                                    <color key="tintColor" red="0.2492355054338774" green="0.48684949524702581" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="130" height="130"/>
+                                                    <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QgL-sj-mt0">
-                                                    <rect key="frame" x="6" y="8" width="108" height="21"/>
+                                                    <rect key="frame" x="6.5" y="8" width="117" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="N6n-Ah-Pem"/>
                                                     </constraints>
@@ -55,7 +55,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ejg-V3-JwV">
-                                                    <rect key="frame" x="6" y="30" width="108" height="21"/>
+                                                    <rect key="frame" x="6.5" y="30" width="117" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="vJo-xD-7lS"/>
                                                     </constraints>
@@ -63,8 +63,8 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="3" minimumFontSize="8" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vC7-ZG-Eks">
-                                                    <rect key="frame" x="6" y="52" width="108" height="66"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="none" minimumFontSize="13" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vC7-ZG-Eks">
+                                                    <rect key="frame" x="6.5" y="52" width="117" height="76"/>
                                                     <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -75,16 +75,20 @@
                                         <constraints>
                                             <constraint firstItem="QgL-sj-mt0" firstAttribute="centerX" secondItem="1AS-UL-Nz7" secondAttribute="centerX" id="51y-F0-Ma3"/>
                                             <constraint firstItem="vC7-ZG-Eks" firstAttribute="centerX" secondItem="1AS-UL-Nz7" secondAttribute="centerX" id="9WK-8Y-ueD"/>
+                                            <constraint firstAttribute="bottom" secondItem="wcx-dN-FWD" secondAttribute="bottom" id="DFw-40-oLq"/>
                                             <constraint firstItem="wcx-dN-FWD" firstAttribute="leading" secondItem="1AS-UL-Nz7" secondAttribute="leading" id="FH0-rQ-LRh"/>
                                             <constraint firstItem="wcx-dN-FWD" firstAttribute="top" secondItem="1AS-UL-Nz7" secondAttribute="top" id="Ghv-FL-7Kx"/>
+                                            <constraint firstItem="wcx-dN-FWD" firstAttribute="leading" secondItem="1AS-UL-Nz7" secondAttribute="leading" id="Gl5-wX-YXT"/>
                                             <constraint firstAttribute="bottom" secondItem="wcx-dN-FWD" secondAttribute="bottom" id="NMk-O2-x1p"/>
                                             <constraint firstItem="Ejg-V3-JwV" firstAttribute="centerX" secondItem="1AS-UL-Nz7" secondAttribute="centerX" id="Rq7-sg-qeK"/>
                                             <constraint firstItem="QgL-sj-mt0" firstAttribute="top" secondItem="1AS-UL-Nz7" secondAttribute="topMargin" id="UaM-f5-7gt"/>
+                                            <constraint firstItem="wcx-dN-FWD" firstAttribute="top" secondItem="1AS-UL-Nz7" secondAttribute="top" id="XBA-HW-grp"/>
                                             <constraint firstItem="vC7-ZG-Eks" firstAttribute="width" secondItem="1AS-UL-Nz7" secondAttribute="width" multiplier="0.9" id="dzL-en-uEM"/>
                                             <constraint firstItem="Ejg-V3-JwV" firstAttribute="top" secondItem="QgL-sj-mt0" secondAttribute="bottom" constant="1" id="fQy-p8-g7i"/>
                                             <constraint firstItem="vC7-ZG-Eks" firstAttribute="top" secondItem="Ejg-V3-JwV" secondAttribute="bottom" constant="1" id="fdH-I0-RAA"/>
                                             <constraint firstAttribute="trailing" secondItem="wcx-dN-FWD" secondAttribute="trailing" id="n1l-FC-Q0b"/>
                                             <constraint firstAttribute="bottom" secondItem="vC7-ZG-Eks" secondAttribute="bottom" constant="2" id="qVH-cI-BeB"/>
+                                            <constraint firstAttribute="trailing" secondItem="wcx-dN-FWD" secondAttribute="trailing" id="r3g-KE-CZj"/>
                                             <constraint firstItem="QgL-sj-mt0" firstAttribute="width" secondItem="1AS-UL-Nz7" secondAttribute="width" multiplier="0.9" id="stm-dC-myy"/>
                                             <constraint firstItem="Ejg-V3-JwV" firstAttribute="width" secondItem="1AS-UL-Nz7" secondAttribute="width" multiplier="0.9" id="y8y-Ud-FYj"/>
                                         </constraints>
@@ -112,9 +116,6 @@
                                                 <state key="normal" image="dogStroke"/>
                                                 <state key="selected" image="dogColor"/>
                                                 <state key="highlighted" image="dogStroke"/>
-                                                <connections>
-                                                    <action selector="sortByDog:" destination="BYZ-38-t0r" eventType="touchUpInside" id="av3-ds-m75"/>
-                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IaJ-cJ-oFZ">
                                                 <rect key="frame" x="80" y="0.0" width="75" height="55"/>
@@ -125,31 +126,39 @@
                                                 <state key="normal" image="catStroke"/>
                                                 <state key="selected" image="catColor"/>
                                                 <state key="highlighted" image="catStroke"/>
-                                                <connections>
-                                                    <action selector="sortByCat:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Mb0-gh-MeN"/>
-                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="9jV-8a-v2e">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="8jN-J1-OoX">
                                         <rect key="frame" x="170" y="0.0" width="175" height="55"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g1b-1W-jw8" customClass="FilterButton" customModule="LostPet" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="81.5" height="55"/>
-                                                <color key="backgroundColor" red="0.053523304780000003" green="0.83743780850000005" blue="0.283556168" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <color key="tintColor" red="0.98777514365430286" green="1" blue="0.96349517322208611" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="Button">
-                                                    <color key="titleColor" red="1" green="0.72201838048940803" blue="0.26530576156150854" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SDt-WT-JTP" customClass="FilterButton" customModule="LostPet" customModuleProvider="target">
-                                                <rect key="frame" x="93.5" y="0.0" width="81.5" height="55"/>
-                                                <color key="backgroundColor" red="0.053523304780000003" green="0.83743780850000005" blue="0.283556168" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <color key="tintColor" red="0.98777514369999997" green="1" blue="0.9634951732" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="Button">
-                                                    <color key="titleColor" red="1" green="0.7220183805" blue="0.26530576160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y6V-fL-Mqi">
+                                                <rect key="frame" x="0.0" y="0.0" width="175" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="9jV-8a-v2e">
+                                                <rect key="frame" x="0.0" y="20.5" width="175" height="34.5"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g1b-1W-jw8" customClass="FilterButton" customModule="LostPet" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="81.5" height="34.5"/>
+                                                        <color key="backgroundColor" red="0.053523304780000003" green="0.83743780850000005" blue="0.283556168" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="tintColor" red="0.98777514365430286" green="1" blue="0.96349517322208611" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <state key="normal" title="Button">
+                                                            <color key="titleColor" red="1" green="0.72201838048940803" blue="0.26530576156150854" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SDt-WT-JTP" customClass="FilterButton" customModule="LostPet" customModuleProvider="target">
+                                                        <rect key="frame" x="93.5" y="0.0" width="81.5" height="34.5"/>
+                                                        <color key="backgroundColor" red="0.053523304780000003" green="0.83743780850000005" blue="0.283556168" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="tintColor" red="0.98777514369999997" green="1" blue="0.9634951732" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <state key="normal" title="Button">
+                                                            <color key="titleColor" red="1" green="0.7220183805" blue="0.26530576160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
                                         </subviews>
                                     </stackView>
                                 </subviews>
@@ -179,6 +188,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="catIcon" destination="IaJ-cJ-oFZ" id="CBf-Si-OxF"/>
+                        <outlet property="countLabel" destination="Y6V-fL-Mqi" id="vJd-uz-5no"/>
                         <outlet property="dogIcon" destination="7mb-8O-uNw" id="xDw-IJ-rz3"/>
                         <outlet property="postCollectionView" destination="9LB-b6-S9b" id="Aez-CT-pFj"/>
                         <outlet property="searchBar" destination="ia9-qL-3ri" id="Gh6-pf-YiV"/>
