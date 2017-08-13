@@ -25,6 +25,11 @@ struct Pet {
     var contactNumber : String?
     var contactEmail : String?
     var mainPhoto : String?
+    
+    var text :String {
+      return   (breed ?? "") + (lastSeenAddr ?? "")
+//    (chip ?? "") + (name ?? "") + (type ?? "" ) + (sex ?? ""  + breed ?? ""  + color ?? "" ) + (looks ?? ""  + (feature ?? "" ) +(lastSeenAddr ?? "" ) + (lastSeenTime ?? "" ) + (contactName ?? "" ) + (contactNumber ?? "" ) + (contactEmail ?? "")
+    }
 }
 
 

@@ -15,7 +15,7 @@ import Alamofire
 
 class PostViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UISearchBarDelegate {
     
-    
+
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var catIcon: UIButton!
     @IBOutlet weak var dogIcon: UIButton!
@@ -24,8 +24,9 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
     var selectedPet: Pet?
     let postCell = "PostCell"
     var lostPetsOrigin = [Pet]()
-    var lostPets = [Pet]()
-    
+    var currentList = [Pet]()
+    var selectedList = [Pet]()
+    var currentKeywords : String?
     @IBOutlet weak var countLabel: UILabel!
     
     
@@ -42,46 +43,81 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
         let tintedImage = origImage?.withRenderingMode(.alwaysTemplate)
         catIcon.setImage(tintedImage, for: .normal)
         catIcon.tintColor = #colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1)
-        
-        
-        catIcon.isSelected = false
-        dogIcon.isSelected = false
-        updatePost()
+
         //testFirebaseUsage()
         //getLostPetObjectWithSwift3()
         //getLostPetsObjectWithAlamofireObjectMapper() //記得打開import AlamofireObjectMapper
     }
+    override func viewDidAppear(_ animated: Bool) {
+        catIcon.isSelected = true
+        dogIcon.isSelected = true
+        updateSelectedType(nil)
+        updatePost()
+
+    }
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print("start searching")
-        guard let keywords = searchBar.text else {return}
-        if keywords == ""{
-            lostPets = lostPetsOrigin
-            updatePost()
-            return
+    @IBAction func buttonClicked(_ sender: UIButton) {
+        print("按鈕被選擇，更改圖示")
+        sender.isSelected = !sender.isSelected
+    }
+    
+    @IBAction func updateSelectedType(_ sender: Any?) {
+
+        print("物種被選擇，更改Post內容")
+        //根據按鈕狀態顯示
+        currentList = lostPetsOrigin.filter{
+            let type = $0.type ?? "未知"
+            if dogIcon.isSelected && type.contains("狗") ||
+                catIcon.isSelected && type.contains("貓"){
+                return true
+            }else{
+                return false
+            }
         }
-        print(keywords)
-        lostPets = lostPets.filter{($0.lastSeenAddr?.lowercased() ?? "").contains(keywords.lowercased())}
+        //FIXME: 這裡有問題，搜尋不正常
+        if let key = currentKeywords, key != "" {
+            self.updateKeywordsResult()
+        }
+        
         updatePost()
     }
+    
+
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print("start searching")
+//        var myStringArr = myString.components(separatedBy: " ")
+        currentKeywords = searchBar.text
+        updateKeywordsResult()
+    
+    }
+    
+    func updateKeywordsResult(){
+        let key = currentKeywords ?? ""
+        if key == "" {
+            currentList = selectedList
+        }else {
+            print("searching for \(key)")
+            currentList = selectedList.filter{$0.text.contains(key.lowercased())}
+        }
+        updatePost()
+    }
+    
 
     
     func updatePost(){
-        print("開始更新 Post")
-//        if !dogIcon.isSelected{
-//            print("dog is not selected")
-//            filteredPets = filteredPets.filter{$0.type != "狗"}
-//            print("dog been filtered out from list")
-//        }dx
-//        if !catIcon.isSelected{
-//            print("cat is not selected")
-//            filteredPets = filteredPets.filter{$0.type != "貓"}
-//            print("cat been filtered out from list")
-//        }
-//        print("start reload View")
-        countLabel.text = "共\(lostPets.count)筆資料"
+        
+         //如果按鈕被按 就確認searchbar有沒有keyword，
+        // 如有的話就先按照原始清單分類然後搜尋，沒的話就分顯示。
+        //如果seachbar被按就拿現在的list來做搜尋顯現，現在的list可直接保留如果searchbar為空就顯現。
+        // 離開search bar時，search bar被清空時
+        
+        print("開始更新post")
+        countLabel.text = "共\(currentList.count)筆資料"
         self.postCollectionView.reloadData()
+        selectedList = currentList
+        print("完成更新Post")
     }
+            
     
     //MARK: 取得政府URL上的資料，轉換成Pet物件儲存至LostPets陣列中
     func getLostPetsArrayWithAlamofire(){
@@ -99,41 +135,35 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
                 print("JSON format to object error")
                 return
             }
-            
+            print("已將json轉成字典物件")
 
             self.lostPetsOrigin = jsonObject.map{
                 Pet(chip: $0["晶片號碼"] as? String, name: $0["寵物名"] as? String, type: $0["寵物別"] as? String, sex: $0["性別"] as? String, breed: $0["品種"] as? String, color: $0["毛色"] as? String, looks: $0["外觀"] as? String, feature: $0["特徵"] as? String, lastSeenTime: $0["遺失時間"] as? String, lastSeenAddr: $0["遺失地點"] as? String, contactName: $0["飼主姓名"] as? String, contactNumber: $0["連絡電話"] as? String, contactEmail: $0["Email"] as? String, mainPhoto: $0["主要照片"] as? String)
             }
-            
+            print("已將json字典轉成Pet物件")
 
             //將虛擬照片名指派給遺失動物陣列
             let fakeCatPhotoTotalNumber = 7
             let fakeDogPhotoTotalNumber = 11
-
             var index = 0
             while index < self.lostPetsOrigin.count {
-                print("start\(index)")
+//                print("start\(index)")
                 if let type = self.lostPetsOrigin[index].type, type.contains("貓") {
                     let photoNumber = String(format:"%.2d",(index%fakeCatPhotoTotalNumber))
                     self.lostPetsOrigin[index].mainPhoto = "cat\(photoNumber).jpg"
-                    print("cat\(photoNumber)")
+//                    print("cat\(photoNumber)")
                 }else if let type = self.lostPetsOrigin[index].type, type.contains("狗"){
                     let photoNumber = String(format:"%.2d",(index%fakeDogPhotoTotalNumber))
                     self.lostPetsOrigin[index].mainPhoto = "dog\(photoNumber).jpg"
-                    print("dog\(photoNumber)")
+//                    print("dog\(photoNumber)")
                 }
-                print("end\(index)")
+//                print("end\(index)")
                 index += 1
             }
+            print("測試：第40張假照片名稱是：\(self.lostPetsOrigin[40].mainPhoto ?? "沒找到照片")")
+            print("已將虛擬照片指派給pet物件")
             
-
-            print("第一張假照片名稱是：\(self.lostPetsOrigin[0].mainPhoto ?? "沒找到照片")")
-                        print("第二張假照片名稱是：\(self.lostPetsOrigin[1].mainPhoto ?? "沒找到照片")")
-                        print("第三張假照片名稱是：\(self.lostPetsOrigin[2].mainPhoto ?? "沒找到照片")")
-            print("第40張假照片名稱是：\(self.lostPetsOrigin[40].mainPhoto ?? "沒找到照片")")
-//            print(self.lostPets[0..<2])
-            self.lostPets = self.lostPetsOrigin
-            print("資料已經從URL載入至lostPetsOrigin，並且複製一筆給lostPets")
+            self.currentList = self.lostPetsOrigin
             self.updatePost()
             //Aoamofire閉包指令結束
         }
@@ -145,20 +175,20 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
         return 1
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if lostPets.count > 0{
-            return lostPets.count}
+        if currentList.count > 0{
+            return currentList.count}
         return 0
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: postCell, for: indexPath) as! PostCollectionViewCell
-        if lostPets.count > 0{
-        let pet = lostPets[indexPath.row]
+        if currentList.count > 0{
+        let pet = currentList[indexPath.row]
         cell.pet = pet}
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectedPet = lostPets[indexPath.row]
+        selectedPet = currentList[indexPath.row]
         performSegue(withIdentifier: "SelectPet", sender: nil)
     }
 

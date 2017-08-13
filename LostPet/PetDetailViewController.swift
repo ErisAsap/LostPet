@@ -61,20 +61,21 @@ class PetDetailViewController: UIViewController {
         
 
         //確定有照片，主要照片的名字為key在字典裡找到其他照片
+        print("search in pet Photo Dictianray acording to the selected Picturre name: \(selectedPet.mainPhoto!)")
         guard let petPhotos :[String] = petPhotosDic[selectedPet.mainPhoto!] else {
             print("failed to get selectedPet Photos")
             return }
         
         //設定Scroll Veiw大小
-        petPhotoScrollView.contentSize.width = UIScreen.main.bounds.width * CGFloat(petPhotos.count)
+        petPhotoScrollView.contentSize.width = petPhotoScrollView.frame.width * CGFloat(petPhotos.count)
         
         //在Scroll View上加上照片
         for itemNumber in 0 ..< petPhotos.count {
         let petPhotoImageView = UIImageView()
         petPhotoImageView.image = UIImage(named: "\(petPhotos[itemNumber]).jpg")
         petPhotoImageView.contentMode = .scaleAspectFit
-        let imageStartX = self.petPhotoScrollView.bounds.width * CGFloat(itemNumber)
-        petPhotoImageView.frame = CGRect(x: imageStartX, y: 0, width: self.petPhotoScrollView.bounds.width, height: self.petPhotoScrollView.bounds.height)
+        let imageStartX = self.petPhotoScrollView.frame.width * CGFloat(itemNumber)
+        petPhotoImageView.frame = CGRect(x: imageStartX, y: 0, width: self.petPhotoScrollView.frame.width, height: self.petPhotoScrollView.frame.height)
         petPhotoScrollView.addSubview(petPhotoImageView)
             
         }

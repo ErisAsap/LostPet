@@ -19,6 +19,6 @@ let lostPetJsonURL = "http://data.coa.gov.tw/Service/OpenData/DataFileService.as
 
 //寵物首張照片 對上該寵物其他照片的字典
 let petPhotosDic = [
-    "cat00":["cat00-0","cat00-1","cat00-2","cat00-3","cat00-4"],
-    "dog00":["dog00-0","dog00-1","dog00-2","dog00-3","dog00-4","dog00-5"]
+    "cat00.jpg":["cat00-0","cat00-1","cat00-2","cat00-3","cat00-4"],
+    "dog00.jpg":["dog00-0","dog00-1","dog00-2","dog00-3","dog00-4","dog00-5"]
 ]

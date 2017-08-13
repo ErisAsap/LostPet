@@ -47,6 +47,7 @@
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QgL-sj-mt0">
                                                     <rect key="frame" x="6.5" y="8" width="117" height="21"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="N6n-Ah-Pem"/>
                                                     </constraints>
@@ -54,8 +55,9 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ejg-V3-JwV">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ejg-V3-JwV">
                                                     <rect key="frame" x="6.5" y="30" width="117" height="21"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="vJo-xD-7lS"/>
                                                     </constraints>
@@ -65,6 +67,7 @@
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="none" minimumFontSize="13" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vC7-ZG-Eks">
                                                     <rect key="frame" x="6.5" y="52" width="117" height="76"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -107,7 +110,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="fA6-lP-Iuv">
                                         <rect key="frame" x="0.0" y="0.0" width="155" height="55"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7mb-8O-uNw">
+                                            <button opaque="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7mb-8O-uNw">
                                                 <rect key="frame" x="0.0" y="0.0" width="70" height="55"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="55" id="7WK-iW-QHF"/>
@@ -115,7 +118,11 @@
                                                 </constraints>
                                                 <state key="normal" image="dogStroke"/>
                                                 <state key="selected" image="dogColor"/>
-                                                <state key="highlighted" image="dogStroke"/>
+                                                <state key="highlighted" image="dogColor"/>
+                                                <connections>
+                                                    <action selector="buttonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yuc-we-9Si"/>
+                                                    <action selector="updateSelectedType:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qcH-OJ-Zww"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IaJ-cJ-oFZ">
                                                 <rect key="frame" x="80" y="0.0" width="75" height="55"/>
@@ -125,7 +132,11 @@
                                                 </constraints>
                                                 <state key="normal" image="catStroke"/>
                                                 <state key="selected" image="catColor"/>
-                                                <state key="highlighted" image="catStroke"/>
+                                                <state key="highlighted" image="catColor"/>
+                                                <connections>
+                                                    <action selector="buttonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="txw-q0-ejN"/>
+                                                    <action selector="updateSelectedType:" destination="BYZ-38-t0r" eventType="touchUpInside" id="23T-F8-Q5p"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -148,6 +159,9 @@
                                                         <state key="normal" title="Button">
                                                             <color key="titleColor" red="1" green="0.72201838048940803" blue="0.26530576156150854" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="buttonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Q25-JO-otY"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SDt-WT-JTP" customClass="FilterButton" customModule="LostPet" customModuleProvider="target">
                                                         <rect key="frame" x="93.5" y="0.0" width="81.5" height="34.5"/>
@@ -156,6 +170,9 @@
                                                         <state key="normal" title="Button">
                                                             <color key="titleColor" red="1" green="0.7220183805" blue="0.26530576160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="buttonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jxd-bo-b7B"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>

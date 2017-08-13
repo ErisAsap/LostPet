@@ -22,7 +22,6 @@ class PostCollectionViewCell: UICollectionViewCell {
             typeAndBreed.text = "\(pet?.type ?? "") \(pet?.breed ?? "")"
             lastSeenAddr.sizeToFit()
             lastSeenAddr.text = pet?.lastSeenAddr
-            mainPhoto.alpha = 0.5
             if let photoName = pet?.mainPhoto{
                 mainPhoto.image = UIImage(named:photoName)
             }
