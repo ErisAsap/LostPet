@@ -74,12 +74,15 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
                 return false
             }
         }
+        
+        selectedList = currentList
+        
+        updatePost()
         //FIXME: 這裡有問題，搜尋不正常
         if let key = currentKeywords, key != "" {
             self.updateKeywordsResult()
         }
         
-        updatePost()
     }
     
 
@@ -87,6 +90,7 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
         print("start searching")
 //        var myStringArr = myString.components(separatedBy: " ")
         currentKeywords = searchBar.text
+        print("currentKeywords is \(currentKeywords ?? "empty")")
         updateKeywordsResult()
     
     }
@@ -114,7 +118,6 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
         print("開始更新post")
         countLabel.text = "共\(currentList.count)筆資料"
         self.postCollectionView.reloadData()
-        selectedList = currentList
         print("完成更新Post")
     }
             

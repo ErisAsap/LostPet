@@ -27,8 +27,8 @@ struct Pet {
     var mainPhoto : String?
     
     var text :String {
-      return   (breed ?? "") + (lastSeenAddr ?? "")
-//    (chip ?? "") + (name ?? "") + (type ?? "" ) + (sex ?? ""  + breed ?? ""  + color ?? "" ) + (looks ?? ""  + (feature ?? "" ) +(lastSeenAddr ?? "" ) + (lastSeenTime ?? "" ) + (contactName ?? "" ) + (contactNumber ?? "" ) + (contactEmail ?? "")
+        return   "\(chip ?? "")\(name ?? "")\(type ?? "")\(sex ?? "")\(breed ?? "")\(color ?? "")\(looks ?? "")\(feature ?? "")\(lastSeenTime ?? "")\(lastSeenAddr ?? "")\(contactName ?? "")\(contactNumber ?? "")\(contactEmail ?? "")"
+
     }
 }
 
