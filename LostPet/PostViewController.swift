@@ -47,6 +47,13 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
         //testFirebaseUsage()
         //getLostPetObjectWithSwift3()
         //getLostPetsObjectWithAlamofireObjectMapper() //記得打開import AlamofireObjectMapper
+        
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        //MARK: chang Add
+        self.navigationController?.isNavigationBarHidden = true
     }
     override func viewDidAppear(_ animated: Bool) {
         catIcon.isSelected = true
@@ -213,6 +220,8 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
             if segue.identifier == "SelectPet"{
                 let petInfoPage = segue.destination as! PetDetailViewController
                 petInfoPage.selectedPet = self.selectedPet
+                //MARK: chang Add
+                petInfoPage.previousPage = self
             }
         }
         
