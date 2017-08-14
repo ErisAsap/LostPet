@@ -26,7 +26,7 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
     var lostPetsOrigin = [Pet]()
     var currentList = [Pet]()
     var selectedList = [Pet]()
-    var currentKeywords : String?
+    var currentKeywords : [String]?
     @IBOutlet weak var countLabel: UILabel!
     
     
@@ -79,7 +79,7 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
         
         updatePost()
         //FIXME: 這裡有問題，搜尋不正常
-        if let key = currentKeywords, key != "" {
+        if let key = currentKeywords, key.count != 0 {
             self.updateKeywordsResult()
         }
         
@@ -88,20 +88,32 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("start searching")
-//        var myStringArr = myString.components(separatedBy: " ")
-        currentKeywords = searchBar.text
-        print("currentKeywords is \(currentKeywords ?? "empty")")
+        currentKeywords = searchBar.text?.components(separatedBy: " ")
+        print("currentKeywords is \(currentKeywords ?? [""])")
         updateKeywordsResult()
-    
     }
     
+    func ifPetMatchAlluserInput(petDescription:String, userInput:[String])->Bool{
+        var state = true
+        //FIXME: 這裡錯了要修正，目前希望搜尋bar裡面的所有項目都符合的才顯示，但是不知道該怎麼做
+        userInput.forEach{ keyword in
+            if petDescription.lowercased().range(of: keyword) == nil {
+                state = false
+            }
+        }
+        return state
+    }
+    
+    
     func updateKeywordsResult(){
-        let key = currentKeywords ?? ""
-        if key == "" {
+        let keys = currentKeywords ?? [""]
+        if keys == [""] {
             currentList = selectedList
         }else {
-            print("searching for \(key)")
-            currentList = selectedList.filter{$0.text.contains(key.lowercased())}
+            print("searching for \(keys)")
+            currentList = selectedList.filter{
+                ifPetMatchAlluserInput(petDescription: $0.text, userInput: keys)
+            }
         }
         updatePost()
     }
