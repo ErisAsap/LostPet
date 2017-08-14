@@ -36,6 +36,7 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
         searchBar.delegate = self
         postCollectionView.dataSource = self
         postCollectionView.delegate = self
+        
         getLostPetsArrayWithAlamofire()
         
         //改變顏色
@@ -43,7 +44,8 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
         let tintedImage = origImage?.withRenderingMode(.alwaysTemplate)
         catIcon.setImage(tintedImage, for: .normal)
         catIcon.tintColor = #colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1)
-
+        catIcon.isSelected = true
+        dogIcon.isSelected = true
         //testFirebaseUsage()
         //getLostPetObjectWithSwift3()
         //getLostPetsObjectWithAlamofireObjectMapper() //記得打開import AlamofireObjectMapper
@@ -54,14 +56,10 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
     override func viewWillAppear(_ animated: Bool) {
         //MARK: chang Add
         self.navigationController?.isNavigationBarHidden = true
+         //根據按鈕按下的方式創造選擇的物件陣列
+            //更新頁面
     }
-    override func viewDidAppear(_ animated: Bool) {
-        catIcon.isSelected = true
-        dogIcon.isSelected = true
-        updateSelectedType(nil)
-        updatePost()
 
-    }
     
     @IBAction func buttonClicked(_ sender: UIButton) {
         print("按鈕被選擇，更改圖示")
@@ -70,9 +68,9 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
     
     @IBAction func updateSelectedType(_ sender: Any?) {
 
-        print("物種被選擇，更改Post內容")
+        print("根據選擇物種篩選新陣列")
         //根據按鈕狀態顯示
-        currentList = lostPetsOrigin.filter{
+        selectedList = lostPetsOrigin.filter{
             let type = $0.type ?? "未知"
             if dogIcon.isSelected && type.contains("狗") ||
                 catIcon.isSelected && type.contains("貓"){
@@ -82,16 +80,16 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
             }
         }
         
-        selectedList = currentList
+        currentList = selectedList
         
         updatePost()
-        //FIXME: 這裡有問題，搜尋不正常
+        
         if let key = currentKeywords, key.count != 0 {
             self.updateKeywordsResult()
         }
         
     }
-    
+
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("start searching")
@@ -100,10 +98,10 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
         updateKeywordsResult()
     }
     
+    //搜尋func只要任何一個key不被包含在目標字串裡就回傳false
     func ifPetMatchAlluserInput(petDescription:String, userInput:[String])->Bool{
         var state = true
-        //FIXME: 這裡錯了要修正，目前希望搜尋bar裡面的所有項目都符合的才顯示，但是不知道該怎麼做
-        userInput.forEach{ keyword in
+        userInput.filter{$0 != ""}.forEach{ keyword in
             if petDescription.lowercased().range(of: keyword) == nil {
                 state = false
             }
@@ -185,8 +183,9 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
             print("測試：第40張假照片名稱是：\(self.lostPetsOrigin[40].mainPhoto ?? "沒找到照片")")
             print("已將虛擬照片指派給pet物件")
             
-            self.currentList = self.lostPetsOrigin
+            self.updateSelectedType(nil)
             self.updatePost()
+
             //Aoamofire閉包指令結束
         }
         //取得資料func結束

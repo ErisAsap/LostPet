@@ -11,7 +11,6 @@ import UIKit
 class PetDetailViewController: UIViewController {
 
     @IBOutlet weak var petPhotoScrollView: UIScrollView!
-    var selectedNumber : Int!
     @IBOutlet weak var txtPetInfo: UITextView!
 //        {
 //        didSet{
@@ -48,7 +47,7 @@ class PetDetailViewController: UIViewController {
   
         //MARK: chang Add
         self.navigationController?.isNavigationBarHidden = false
-        self.navigationItem.title = selectedPet.name
+        self.navigationItem.title = selectedPet
         print(selectedPet)
         
     }  //End of viewDidLoad
@@ -66,34 +65,37 @@ class PetDetailViewController: UIViewController {
     //頁面佈置:寵物照片展示區
     private func setUpPhotosScrollView(){
         
+<<<<<<< HEAD
 
+        //確定有照片，主要照片的名字為key在字典裡找到其他照片
+        print("search in pet Photo Dictianray acording to the selected Picturre name: \(selectedPet.mainPhoto!)")
+        guard let petPhotos :[String] = petPhotosDic[selectedPet.mainPhoto!] else {
+            print("failed to get selectedPet Photos")
+            return }
+=======
+        //確定有照片
 //        guard let petPhotos = previousPage?.filteredPets[0]["cat00"] else {
 //        //guard let petPhotos = petPhotosDic[selectedPet!] else {
 //            print("failed to get selectedPet")
 //            return }
+        let petPhotos = [
+            "cat00":["cat00-0","cat00-1","cat00-2","cat00-3","cat00-4"],
+            "dog00":["dog00-0","dog00-1","dog00-2","dog00-3","dog00-4","dog00-5"]]
+>>>>>>> 3a4738fa31f101f8cd60a9153ce45da8efd8c791
         
-//        let petPhotos = [
-//            "cat00":["cat00-0","cat00-1","cat00-2","cat00-3","cat00-4"],
-//            "dog00":["dog00-0","dog00-1","dog00-2","dog00-3","dog00-4","dog00-5"]]
-//        
-        let petPhotosDic = [
-            "cat00.jpg":["cat00-0","cat00-1","cat00-2","cat00-3","cat00-4"],
-            "dog00.jpg":["dog00-0","dog00-1","dog00-2","dog00-3","dog00-4","dog00-5"]
-        ]
+
         
         //在Scroll View上加上照片
-        guard let petPhotos = petPhotosDic[selectedPet.mainPhoto!] else{
-            print("沒找到此寵物的相簿"); return}
+        let xx = petPhotos[selectedPet]!.count
+        print(xx)
         //設定Scroll Veiw大小
-        let photosCount = petPhotos.count
-
-        for itemNumber in 0 ..< photosCount {
+        petPhotoScrollView.contentSize.width = petPhotoScrollView.frame.width * CGFloat(xx)
+        for itemNumber in 0 ..< xx {
         let petPhotoImageView = UIImageView()
-        petPhotoImageView.image = UIImage(named: "\(petPhotos[itemNumber]).jpg")
+        petPhotoImageView.image = UIImage(named: "\(petPhotos[selectedPet]![itemNumber]).jpg")
         petPhotoImageView.contentMode = .scaleAspectFit
         let imageStartX = self.petPhotoScrollView.frame.width * CGFloat(itemNumber)
         petPhotoImageView.frame = CGRect(x: imageStartX, y: 0, width: self.petPhotoScrollView.frame.width, height: self.petPhotoScrollView.frame.height)
-        petPhotoScrollView.contentSize.width =  petPhotoImageView.frame.width * CGFloat(photosCount)
         petPhotoScrollView.addSubview(petPhotoImageView)
         }
     }
