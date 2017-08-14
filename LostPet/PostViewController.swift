@@ -95,15 +95,13 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
         }
         
     }
-
-
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print("start searching")
-        currentKeywords = searchBar.text?.components(separatedBy: " ")
-        print("currentKeywords is \(currentKeywords ?? [""])")
-        updateKeywordsResult()
-    }
     
+
+    
+
+    
+
+    //Data Searching Function
     //搜尋func只要任何一個key不被包含在目標字串裡就回傳false
     func ifPetMatchAlluserInput(petDescription:String, userInput:[String])->Bool{
         var state = true
@@ -114,7 +112,6 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
         }
         return state
     }
-    
     
     func updateKeywordsResult(){
         let keys = currentKeywords ?? [""]
@@ -129,10 +126,7 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
         updatePost()
     }
     
-
-    
     func updatePost(){
-        
          //如果按鈕被按 就確認searchbar有沒有keyword，
         // 如有的話就先按照原始清單分類然後搜尋，沒的話就分顯示。
         //如果seachbar被按就拿現在的list來做搜尋顯現，現在的list可直接保留如果searchbar為空就顯現。
@@ -143,17 +137,54 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
         self.postCollectionView.reloadData()
         print("完成更新Post")
     }
-            
+    
+    
+    
+    //MARK: searchBar Delegate
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        postCollectionView.allowsSelection = false
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print("start searching")
+        postCollectionView.allowsSelection = false
+        currentKeywords = searchBar.text?.components(separatedBy: " ")
+        print("currentKeywords is \(currentKeywords ?? [""])")
+        updateKeywordsResult()
+        self.hideKeyboardWhenTappedAround()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.searchBar.text = ""
+        updateSelectedType(nil)
+        searchBar.resignFirstResponder()
+        self.collectionAllowSelected()
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar){
+        self.hideKeyboardWhenTappedAround()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.dismissKeyboard()
+    }
+    
+    fileprivate func collectionAllowSelected(){
+        postCollectionView.allowsSelection = true
+    }
+    
     
     //MARK: 集合視圖的建置:如果fuilteredPets裡面已經有資料，就將
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if currentList.count > 0{
             return currentList.count}
         return 0
     }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: postCell, for: indexPath) as! PostCollectionViewCell
         if currentList.count > 0{
@@ -177,7 +208,27 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
                 petInfoPage.previousPage = self
             }
         }
-        
+
+}   //end of class
+
+
+
+
+
+extension PostViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+        //允許選取在main serial裡
+        DispatchQueue.main.async {
+            self.collectionAllowSelected()
+        }
+    }
 }
 
 
