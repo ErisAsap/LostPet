@@ -19,7 +19,6 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var catIcon: UIButton!
     @IBOutlet weak var dogIcon: UIButton!
-    
     @IBOutlet weak var postCollectionView: UICollectionView!
     
     var selectedPet: Pet?
@@ -61,9 +60,39 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
     
     override func viewWillAppear(_ animated: Bool) {
         //MARK: chang Add
-        self.navigationController?.isNavigationBarHidden = true
+      //  self.navigationController?.isNavigationBarHidden = true
          //根據按鈕按下的方式創造選擇的物件陣列
             //更新頁面
+    }
+
+    
+    
+    //MARK: 頁面控制
+    //前往動物資訊頁
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //            if segue.identifier == "SelectPet"{
+        //                let petInfoPage = segue.destination as! PetDetailViewController
+        //                petInfoPage.selectedPet = self.selectedPet
+        //                //MARK: chang Add
+        //                petInfoPage.previousPage = self
+        //            }else
+        
+        if let indexPath = sender as? IndexPath{
+            let editVC = segue.destination as! AddPetViewController
+            editVC.pet = selectedPet
+            editVC.completionCallBack = {
+                print("completionCallBack been called")
+                if let newPet = editVC.pet {
+                    print(newPet)
+                    self.currentList[indexPath.row] = newPet
+                }
+                self.selectedPet = nil
+                self.currentKeywords = nil
+                self.searchBar.text = ""
+                self.updateSelectedType(nil)
+            }
+            
+        }
     }
 
     
@@ -174,7 +203,7 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
     }
     
     
-    //MARK: 集合視圖的建置:如果fuilteredPets裡面已經有資料，就將
+    //MARK: 集合視圖的建置:如果filteredPets裡面已經有資料，就將
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -195,19 +224,8 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedPet = currentList[indexPath.row]
-        performSegue(withIdentifier: "SelectPet", sender: nil)
+        performSegue(withIdentifier: "post2edit", sender: indexPath)
     }
-
-        //MARK: 頁面控制
-        //前往動物資訊頁
-        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            if segue.identifier == "SelectPet"{
-                let petInfoPage = segue.destination as! PetDetailViewController
-                petInfoPage.selectedPet = self.selectedPet
-                //MARK: chang Add
-                petInfoPage.previousPage = self
-            }
-        }
 
 }   //end of class
 

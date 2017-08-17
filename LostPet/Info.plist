@@ -41,6 +41,10 @@
 	</dict>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>請在相簿中選取寵物的照片</string>
+	<key>NSCameraUsageDescription</key>
+	<string>為您的寵物拍照</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
