@@ -21,7 +21,8 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
     @IBOutlet weak var dogIcon: UIButton!
     @IBOutlet weak var postCollectionView: UICollectionView!
     
-    var selectedPet: Pet?
+//    var selectedPet: Pet?
+    var previousSelectedPet: Pet?
     let postCell = "PostCell"
     var lostPetsOrigin = [Pet]()
     var currentList = [Pet]()
@@ -38,7 +39,7 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
         postCollectionView.dataSource = self
         postCollectionView.delegate = self
         
-        Pet.getLostPetsArrayWithAlamofire { (lostPetsOrigin) in
+        Pet.fetchingResult { (lostPetsOrigin) in
             self.lostPetsOrigin = lostPetsOrigin
             self.updateSelectedType(nil)
             self.updatePost()
@@ -60,35 +61,33 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
     
     override func viewWillAppear(_ animated: Bool) {
         //MARK: chang Add
-      //  self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.isNavigationBarHidden = true
          //根據按鈕按下的方式創造選擇的物件陣列
             //更新頁面
     }
 
     
-    
+    //MARK:
     //MARK: 頁面控制
-    //前往動物資訊頁
+    //在前往頁面之前
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //            if segue.identifier == "SelectPet"{
-        //                let petInfoPage = segue.destination as! PetDetailViewController
-        //                petInfoPage.selectedPet = self.selectedPet
-        //                //MARK: chang Add
-        //                petInfoPage.previousPage = self
-        //            }else
-        
-        if let indexPath = sender as? IndexPath{
-            let editVC = segue.destination as! AddPetViewController
-            editVC.pet = selectedPet
-            editVC.completionCallBack = {
-                print("completionCallBack been called")
-                if let newPet = editVC.pet {
-                    print(newPet)
-                    self.currentList[indexPath.row] = newPet
+        //如果有是cell被點，位置資訊成功轉換，前往寵物資訊頁面，並且傳入被選的寵物
+        if segue.identifier == "post2detail", let indexPath = sender as? IndexPath{
+            let infoVC = segue.destination as! PetDetailViewController
+            //將被選擇的寵物傳去下一面，記錄現在被選擇的寵物
+            infoVC.selectedPet = currentList[indexPath.row]
+            previousSelectedPet = currentList[indexPath.row]
+
+            //如果是新增按鈕被點，前往新增頁面，將回來時要執行的任務傳過去
+        }else if segue.identifier == "post2add"{
+            let addVC = segue.destination as! AddPetViewController
+            //完成任務時callback執行新增寵物資訊及更新表格
+            addVC.completionCallBack = {
+                print("add pet complete and CallBack to update post")
+                if let newPet = addVC.pet {
+                    print("新增寵物資料 資料內容:\(newPet)")
+                    self.lostPetsOrigin.insert(newPet, at: 0)
                 }
-                self.selectedPet = nil
-                self.currentKeywords = nil
-                self.searchBar.text = ""
                 self.updateSelectedType(nil)
             }
             
@@ -168,7 +167,7 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
     }
     
     
-    
+    //MARK:
     //MARK: searchBar Delegate
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         postCollectionView.allowsSelection = false
@@ -202,8 +201,9 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
         postCollectionView.allowsSelection = true
     }
     
-    
-    //MARK: 集合視圖的建置:如果filteredPets裡面已經有資料，就將
+    //MARK:
+    //MARK: 集合視圖的建置:
+    //如果filteredPets裡面已經有資料，就將
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -223,8 +223,7 @@ class PostViewController: UIViewController,UICollectionViewDelegate,UICollection
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectedPet = currentList[indexPath.row]
-        performSegue(withIdentifier: "post2edit", sender: indexPath)
+        performSegue(withIdentifier: "post2detail", sender: indexPath)
     }
 
 }   //end of class
@@ -249,8 +248,9 @@ extension PostViewController {
     }
 }
 
-
-//    //MARK: 集合視圖的建置
+//MARK:
+//MARK: 過去的
+//    //MARK: 兩層集合視圖的建置
 //    func numberOfSections(in collectionView: UICollectionView) -> Int {
 //        return postData.count
 //    }

@@ -11,27 +11,26 @@ import UIKit
 class PetDetailViewController: UIViewController {
 
     @IBOutlet weak var petPhotoScrollView: UIScrollView!
-    var selectedNumber : Int!
     @IBOutlet weak var txtPetInfo: UITextView!
-    var previousPage: PostViewController?
     var selectedPet : Pet!
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
         print("PetDetailPageDidLoad")
-        setUpPhotosScrollView()
-  
+        
         //MARK: chang Add
         self.navigationController?.isNavigationBarHidden = false
-        self.navigationItem.title = selectedPet.name
-        print(selectedPet)
+        self.navigationItem.title = selectedPet.name ?? ""
+        print("被選擇的寵物 內容:\(selectedPet)")
         
     }  //End of viewDidLoad
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        setUpPhotosScrollView()
+    }
+
     //頁面控制:回到上一面
     @IBAction func backToPreviousPage(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)

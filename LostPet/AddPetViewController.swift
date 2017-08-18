@@ -27,6 +27,7 @@ class AddPetViewController: UIViewController, UINavigationControllerDelegate, UI
     
     override func viewDidLoad() {
         
+        //如果有傳pet過來
         if let pet = pet {
             typeText.text = pet.type
             breedText.text = pet.breed
@@ -41,24 +42,28 @@ class AddPetViewController: UIViewController, UINavigationControllerDelegate, UI
             contactNameText.text = pet.contactName
             contactNumberText.text = pet.contactNumber
             
+            //照片也設定成可以互動
+            petImagesView.isUserInteractionEnabled = true
+            let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.selectImage))
+            petImagesView.addGestureRecognizer(gestureRecognizer)
         }
+        //如果沒有傳Pet進來代表是要新增
         
-        featureTextView.isUserInteractionEnabled = true
-        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.selectImage))
-        featureTextView.addGestureRecognizer(gestureRecognizer)
-        
-        
-    } // Do any additional setup after loading the view.
+
+    } // end of view did load
     
-    @IBAction func dismissAddPet(_ sender: Any) {
+    @IBAction func cancelAddPet(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func addPet(_ sender: Any) {
         
+        
         if pet == nil {
-            pet = Pet(chip: nil, name: nil, type: nil, sex: nil, breed: nil, color: nil, looks: nil, feature: nil, lastSeenTime: nil, lastSeenAddr: nil, contactName: nil, contactNumber: nil, contactEmail: nil, mainPhoto: nil, postType: .lost)
+            pet = Pet()
         }
+//            pet = Pet(chip: nil, name: nil, type: nil, sex: nil, breed: nil, color: nil, looks: nil, feature: nil, lastSeenTime: nil, lastSeenAddr: nil, contactName: nil, contactNumber: nil, contactEmail: nil, mainPhoto: nil, postType: .lost)
+
         
         pet?.type = typeText.text
         pet?.breed = breedText.text
@@ -72,11 +77,20 @@ class AddPetViewController: UIViewController, UINavigationControllerDelegate, UI
         pet?.chip = chipText.text
         pet?.contactName = contactNameText.text
         pet?.contactNumber = contactNumberText.text
-
-
         completionCallBack!()
+        self.dismiss(animated: true, completion: nil)
+        
     }
     
+
+    
+    //照片控制器的設定
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        petImagesView.image = info[UIImagePickerControllerEditedImage] as? UIImage
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    //選照片
     func selectImage() {
         // selecting Image from library
         
@@ -88,10 +102,7 @@ class AddPetViewController: UIViewController, UINavigationControllerDelegate, UI
         
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        petImagesView.image = info[UIImagePickerControllerEditedImage] as? UIImage
-        self.dismiss(animated: true, completion: nil)
-    }
+    
     /*
      // MARK: - Navigation
      

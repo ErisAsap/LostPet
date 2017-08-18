@@ -203,7 +203,7 @@
                     <navigationItem key="navigationItem" id="TMF-zv-vTl">
                         <barButtonItem key="rightBarButtonItem" title="張貼佈告" id="KI4-E1-SdK">
                             <connections>
-                                <segue destination="U2M-cY-gKn" kind="presentation" identifier="post2edit" id="9tv-EM-AUx"/>
+                                <segue destination="U2M-cY-gKn" kind="presentation" identifier="post2add" id="9tv-EM-AUx"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -214,7 +214,7 @@
                         <outlet property="postCollectionView" destination="9LB-b6-S9b" id="Aez-CT-pFj"/>
                         <outlet property="searchBar" destination="ia9-qL-3ri" id="Gh6-pf-YiV"/>
                         <outlet property="searchDisplayController" destination="2Ai-CQ-8lT" id="gcG-uO-tRj"/>
-                        <segue destination="xGe-F1-hkj" kind="show" identifier="SelectPet" id="Yvc-Gx-9ag"/>
+                        <segue destination="xGe-F1-hkj" kind="show" identifier="post2detail" id="Yvc-Gx-9ag"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -229,25 +229,6 @@
             </objects>
             <point key="canvasLocation" x="1879.2" y="799.2503748125938"/>
         </scene>
-        <!--Item 2-->
-        <scene sceneID="QpS-Fy-ZJs">
-            <objects>
-                <viewController id="sKw-8r-Ahr" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="JMj-NN-VzR"/>
-                        <viewControllerLayoutGuide type="bottom" id="D59-Nd-KOo"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="yTo-Fc-hba">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" image="dogStroke" id="N6g-Bb-Aii"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TZF-7l-N0L" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2007" y="1630"/>
-        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="bOj-4V-zeA">
             <objects>
@@ -259,7 +240,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="KFU-Eo-ghs" kind="relationship" relationship="viewControllers" id="0zA-Z0-fk0"/>
-                        <segue destination="sKw-8r-Ahr" kind="relationship" relationship="viewControllers" id="yl0-1M-Q2W"/>
+                        <segue destination="U2M-cY-gKn" kind="relationship" relationship="viewControllers" id="qeb-uW-W1L"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BWo-5q-JeW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -314,7 +295,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="mgg-KH-Eaf">
-                                <rect key="frame" x="10" y="395" width="77.5" height="171"/>
+                                <rect key="frame" x="10" y="346" width="77.5" height="171"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="遺失時間" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jXK-UQ-RSb">
                                         <rect key="frame" x="0.0" y="0.0" width="77.5" height="23"/>
@@ -349,7 +330,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="HxZ-23-a2Y">
-                                <rect key="frame" x="10" y="596" width="77.5" height="60"/>
+                                <rect key="frame" x="10" y="547" width="77.5" height="60"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="飼主姓名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x7j-pJ-PKC">
                                         <rect key="frame" x="0.0" y="0.0" width="77.5" height="23"/>
@@ -372,7 +353,7 @@
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="nlm-WG-TbT">
-                                <rect key="frame" x="98" y="394" width="241.5" height="170"/>
+                                <rect key="frame" x="98" y="345" width="241.5" height="170"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9KA-Se-eyM">
                                         <rect key="frame" x="0.0" y="0.0" width="241.5" height="30"/>
@@ -407,7 +388,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Iwh-ib-5Ta">
-                                <rect key="frame" x="98" y="594" width="241.5" height="65"/>
+                                <rect key="frame" x="98" y="545" width="241.5" height="65"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fBC-gJ-et2">
                                         <rect key="frame" x="0.0" y="0.0" width="241.5" height="30"/>
@@ -453,7 +434,7 @@
                                 </subviews>
                             </stackView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Whv-Fu-QSa">
-                                <rect key="frame" x="79" y="240" width="261" height="146"/>
+                                <rect key="frame" x="79" y="240" width="261" height="97"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="261" id="7QU-RP-AWg"/>
@@ -468,12 +449,12 @@
                                     <navigationItem title="Title" id="Pob-ip-pLy">
                                         <barButtonItem key="leftBarButtonItem" title="返回" id="GYH-wW-Hel">
                                             <connections>
-                                                <action selector="dismissAddPet:" destination="U2M-cY-gKn" id="zxc-UL-uFA"/>
+                                                <action selector="cancelAddPet:" destination="U2M-cY-gKn" id="vry-lq-3uQ"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="確定新增" id="F68-Ka-SR3">
                                             <connections>
-                                                <action selector="addPet:" destination="U2M-cY-gKn" id="xYq-K6-jB9"/>
+                                                <action selector="addPet:" destination="U2M-cY-gKn" id="TIb-Vd-HTQ"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -505,6 +486,7 @@
                             <constraint firstItem="GyP-4f-5or" firstAttribute="leading" secondItem="qw8-f4-aRc" secondAttribute="trailing" constant="47" id="ynb-w9-e1n"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Add" id="Rbe-dZ-hbw"/>
                     <navigationItem key="navigationItem" title="Title" id="nYU-jF-MMF">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="WGe-to-2IL"/>
                     </navigationItem>
@@ -526,7 +508,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CvZ-dC-NY0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2557.5999999999999" y="84.107946026986511"/>
+            <point key="canvasLocation" x="1473" y="1615"/>
         </scene>
         <!--Title-->
         <scene sceneID="kjo-6P-bV3">
@@ -566,7 +548,11 @@
                     <navigationItem key="navigationItem" title="Title" id="5Ly-ai-sJ7">
                         <rightBarButtonItems>
                             <barButtonItem systemItem="action" id="1Ai-aH-fQ6"/>
-                            <barButtonItem systemItem="compose" id="p9n-lx-PqP"/>
+                            <barButtonItem systemItem="compose" id="p9n-lx-PqP">
+                                <connections>
+                                    <segue destination="U2M-cY-gKn" kind="presentation" identifier="detail2edit" id="O6E-rR-Lcl"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
@@ -579,11 +565,11 @@
             </objects>
             <point key="canvasLocation" x="2682.608695652174" y="797.28260869565224"/>
         </scene>
-        <!--Item-->
+        <!--Post-->
         <scene sceneID="YYf-n8-c4v">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="KFU-Eo-ghs" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" image="catStroke" id="jtb-Si-KfT"/>
+                    <tabBarItem key="tabBarItem" title="Post" id="jtb-Si-KfT"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="d9k-rM-zkC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -605,4 +591,7 @@
         <image name="dogColor" width="68" height="47"/>
         <image name="dogStroke" width="69" height="49"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="9tv-EM-AUx"/>
+    </inferredMetricsTieBreakers>
 </document>
